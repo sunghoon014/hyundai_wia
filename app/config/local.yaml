@@ -1,0 +1,167 @@
+########################################################
+# 에이전트 설정 관련
+########################################################
+agent:
+  max_steps: 10
+  model_types: # 현재 사용하고 있는 모델 목록
+    frontier:
+      - anthropic/claude-sonnet-4
+      - openai/gpt-4.1
+      - google/gemini-2.5-pro
+    mini:
+      - openai/gpt-4.1-mini
+      - openai/o3-mini
+      - google/gemini-2.5-flash
+  domain: ax # 어떤 프로젝트에서 사용한 에이전트를 사용할지
+  domain_configs:
+    ax:
+      model: openai/gpt-4.1
+      provider: openrouter
+      mode: qa_generation
+      params: # OpenAI 호환 파라미터
+        max_tokens: 2048 # reasoing 모델의 max_completion_tokens도 호환 가능
+        temperature: 0.0
+      config: # 그 외 설정
+        max_input_tokens: null # null은 제한 없음
+        retry:
+          max_retries: 3
+          base_delay: 1.0
+    kearney:
+      model: openai/gpt-4.1-mini # model_types에 정의된 모델 중 하나
+      provider: openrouter
+      mode: deep # vanila(Planning 단계가 없음) vs deep(Planning 단계가 있음)
+      params: # OpenAI 호환 파라미터
+        max_tokens: 4096 # reasoing 모델의 max_completion_tokens도 호환 가능
+        temperature: 0.0
+      config: # 그 외 설정
+        max_input_tokens: null # null은 제한 없음
+        retry:
+          max_retries: 3
+          base_delay: 1.0
+  domain_tools:
+    ax: # agents의 도메인 명칭, 비지니스 로직과 모델 성능에 따라 사용하는 tool이 다름, app/agents/tools/__init__.py 확인
+      qa_generation: ["planning","ask_human", "answer"]
+      list: # 기록용
+        - planning
+        - ask_human
+        - answer
+    kearney: # agents의 도메인 명칭, 비지니스 로직과 모델 성능에 따라 사용하는 tool이 다름, app/agents/tools/__init__.py 확인
+      frontier:
+        vanila: ["cite_sources"]
+        deep: ["cite_sources", "answer_with_cite_sources_streaming"]
+      mini:
+        vanila: ["answer", "answer_with_cite_sources"]
+        deep: ["answer", "answer_with_cite_sources", "planning"]
+      list: # 기록용
+        - planning
+        - cite_sources
+        - answer
+        - answer_with_cite_sources
+        - answer_with_cite_sources_streaming # anthropic/claude-sonnet-4 에 최적화 된 툴
+        - terminate
+
+########################################################
+# MCP 클라이언트 설정 관련
+########################################################
+mcp_tools: # MCP 클라이언트로 구현된 툴, chat 도메인에서 request 시 사용할 툴 선택
+  web_search:
+    model: perplexity/sonar-pro
+    provider: openrouter # perplexity/sonar-pro 모델은 openrouter에서만 사용 가능
+    params:
+      max_tokens: 1024
+      temperature: 0.0
+
+########################################################
+# 문서 파싱 설정 관련
+########################################################
+document:
+  split_pdf_files_node:
+    batch_size: 100
+    save_dir: "./data/tmp"
+    test_page: null # null은 제한 없음
+  upstage_parse_node:
+    is_save: true # true는 api 결과 저장 vs false는 저장 안함
+  page_summary_node:
+    model: google/gemini-2.5-flash
+    provider: openrouter
+    params:
+      max_tokens: 4096
+      temperature: 0.0
+  image_summary_node:
+    model: google/gemini-2.5-flash
+    provider: openrouter
+    params:
+      max_tokens: 4096
+      temperature: 0.0
+  table_summary_node:
+    model: google/gemini-2.5-flash
+    provider: openrouter
+    params:
+      max_tokens: 4096
+      temperature: 0.0
+  langchain_document_node:
+    chunk_size: 1000
+    chunk_overlap: 100
+    strategy: recursive #  # recursive vs semantic, recursive 권장
+    embedding_model: text-embedding-3-small # semantic에서 OpenAIEmbeddings를 위해 사용
+  list: # 파싱에서 사용된 모듈 목록 (app/domains/document/handlers/node), 기록용
+    - split_pdf_files_node # 문서 자르기, upstage는 최대 100페이지 까지 가능
+    - upstage_parse_node # 잘려진 문서 별 파싱
+    - post_parse_node # 모든 문서에 아이디 부여
+    - page_summary_node # 페이지 별 요약 후 전체 문서 요약
+    - image_summary_node # VLM 기반으로 이미지 내 중요 정보 추출
+    - table_summary_node # VLM 기반으로 테이블 내 중요 정보 추출
+    - langchain_document_node # 추출된 정보 기반으로 Langchain Document로 변환
+
+########################################################
+# QA 데이터셋 생성 설정 관련
+########################################################
+question:
+  supervisor_node:
+    max_loop_count: 1
+  generator_node:
+    model: google/gemini-2.5-flash
+    provider: openrouter
+    params:
+      max_tokens: 4096
+      temperature: 0.0
+  evaluator_node:
+    model: google/gemini-2.5-flash
+    provider: openrouter
+    params:
+      max_tokens: 4096
+      temperature: 0.0
+  list: # QA 데이터셋 생성에서 사용된 모듈 목록 (app/domains/question/handlers/node), 기록용
+    - generator_node # 데이터셋 생성
+    - evaluator_node # 데이터셋 평가
+
+########################################################
+# Indexing & Retriever 설정 관련
+########################################################
+milvus: # Milvus 설정
+  indexing: # 인덱싱 설정
+    connection_alias: default # 데이터베이스 연결 별칭
+    dense_vector_dim: 3072 # 벡터 차원
+    embedding_model: text-embedding-3-small # text-embedding-3-small vs text-embedding-3-large / OpenAIEmbeddings 사용
+    enable_nltk: false # 텍스트 클렌징 여부, 현재 영어 전용이라 false로 설정 / true로 설정시 영어 전처리 진행되어 한글에는 적합하지 않음
+  retrive: # 검색 설정 / 최적화 필요
+    top_k: 10
+    dense_weight: 0.7
+    ranker_type: rrf # "weighted" or "rrf"
+    rrf_k: 60 # RRF ranker parameter
+    embedding:
+      model: text-embedding-3-small
+      dense_vector_dim: 3072
+    collection_name: document
+    index_params:
+      index_type: FLAT
+      metric_type: IP
+    search_params:
+      dense_params:
+        metric_type: IP # 정규화된 OpenAI embedding에서는 IP가 Cosine과 동일하면서 더 빠름
+        params:
+          nprobe: 50
+      sparse_params:
+        metric_type: BM25 # BM25 Function 사용시 BM25 metric 필수
+        drop_ratio_search: 0.0 # 모든 토큰 보존 (중요한 키워드 삭제 방지)
+        params: {}

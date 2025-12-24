@@ -1,0 +1,35 @@
+.venv/
+data/
+*.log
+uv.lock
+.env
+
+# data
+*/xml2json/output
+*/xml2json/raw_data
+*/kb_xml2json/output
+*/kb_xml2json/raw_data
+preprocessing/deprecated/output
+preprocessing/deprecated/raw_data
+
+# **/*.json
+**/*.jsonl
+**/*.csv
+**/*.npz
+**/*.xlsx
+**/*.zip
+**/*.dict
+
+.DS_Store
+
+# local db files
+*.db
+*.db.lock
+
+# milvus
+volumes/
+embedEtcd.yaml
+user.yaml
+standalone.yaml
+standalone_embed.sh
+standalone_embed_latest.sh
