@@ -33,3 +33,13 @@ user.yaml
 standalone.yaml
 standalone_embed.sh
 standalone_embed_latest.sh
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+ ../.DS_Store
+
+# OS
+.DS_Store
