@@ -1,6 +1,8 @@
 import os
 import sys
 
+from unsloth import FastLanguageModel  # isort: skip
+
 from datasets import Dataset
 
 sys.path.append("../")
@@ -9,10 +11,8 @@ import random
 
 import numpy as np
 import torch
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from transformers import HfArgumentParser
 from trl import SFTTrainer
-from unsloth import FastLanguageModel
 from utils.argumentations import (
     DataTrainingArguments,
     ModelArguments,
@@ -64,7 +64,7 @@ def main():
         r=model_args.lora_r,
         lora_alpha=model_args.lora_alpha,
         lora_dropout=model_args.lora_dropout,
-        lora_bias=model_args.lora_bias,
+        lora_bias="none",
         # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
         use_gradient_checkpointing="unsloth",  # True or "unsloth" for very long context
         random_state=104,

@@ -10,7 +10,7 @@ class ModelArguments:
     """Arguments pertaining to which model/config/tokenizer we are going to fine-tune from."""
 
     model_name_or_path: str = field(
-        default="Qwen/Qwen3-4B-Thinking-2507",
+        default="unsloth/Qwen3-30B-A3B-Thinking-2507",
         metadata={
             "help": "Path to pretrained model or model identifier from huggingface.co/models"
         },
@@ -104,20 +104,6 @@ class OurTrainingArguments(SFTConfig):
     )
 
     # 학습 관련 설정
-    gradient_checkpointing: bool = field(
-        default=True,
-        metadata={
-            "help": "메모리 절약을 위해 Gradient Checkpointing 사용 (속도는 약간 느려질 수 있음)"
-        },
-    )
-    fp16: bool = field(
-        default=True,
-        metadata={"help": "FP16 사용 여부, Mac 사용 시 False"},
-    )
-    bf16: bool = field(
-        default=False,
-        metadata={"help": "BF16 사용 여부, Mac 사용 시 True"},
-    )
     num_train_epochs: int = field(
         default=3,
         metadata={
