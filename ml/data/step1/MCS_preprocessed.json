@@ -1,0 +1,102 @@
+[
+    {
+        "id": 0,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## PLCController. PLC(Programmable Logic Controller) 센서 값을 관리하는 API입니다.\n### 1. PUT /api/PLC/sensorvalue\n\n센서 값을 업데이트합니다.\n\n**Endpoint:** `PUT /api/PLC/sensorvalue`\n\n**Request Body:**\n```json\n{\n  \"SensorId\": 1001,\n  \"Current\": \"25.5\"\n}\n```\n\n**Response:**\n```json\n{\n  \"Success\": true,\n  \"Error\": null\n}\n```\n\n**인증:** JWT Token 필요\n\n**설명:**\n- 사용자 정보는 JWT Token에서 추출됩니다.\n- 센서 값을 PLC에 기록하고 결과를 반환합니다.\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 1,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## ObjectController. 시스템 객체(장소, 호출, 미션 등)를 관리하는 API입니다.\n### 1. GET /api/Object/Hello\n\n서버 연결 테스트용 헬로우 API입니다.\n\n**Endpoint:** `GET /api/Object/Hello`\n\n**Response:**\n```json\n\"Hello, World\"\n```\n\n**인증:** 불필요\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 2,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## ObjectController. 시스템 객체(장소, 호출, 미션 등)를 관리하는 API입니다.\n### 2. GET /api/Object/places\n\n모든 장소(Place) 정보를 조회합니다.\n\n**Endpoint:** `GET /api/Object/places`\n\n**Response:**\n```json\n[\n  {\n    \"Code\": \"P001\",\n    \"AlarmState\": \"Normal\",\n    \"ModeState\": \"Auto\",\n    \"PlaceRunState\": \"Run\",\n    \"LogisticsState\": \"Available\"\n  },\n  {\n    \"Code\": \"P002\",\n    \"AlarmState\": \"Warning\",\n    \"ModeState\": \"Manual\",\n    \"PlaceRunState\": \"Stop\",\n    \"LogisticsState\": \"Unavailable\"\n  }\n]\n```\n\n**인증:** 불필요\n\n**설명:**\n- 시스템에 등록된 모든 장소 정보를 반환합니다.\n- 비동기로 처리됩니다.\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 3,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## ObjectController. 시스템 객체(장소, 호출, 미션 등)를 관리하는 API입니다.\n### 3. PUT /api/Object/place\n\n장소 정보를 업데이트합니다.\n\n**Endpoint:** `PUT /api/Object/place`\n\n**Request Body:**\n```json\n{\n  \"Code\": \"P001\",\n  \"AlarmState\": \"Normal\",\n  \"ModeState\": \"Auto\",\n  \"PlaceRunState\": \"Run\",\n  \"LogisticsState\": \"Available\"\n}\n```\n\n**Response:**\n```json\n{\n  \"Result\": true,\n  \"Message\": \"Place updated successfully\"\n}\n```\n\n**인증:** JWT Token 필요\n\n**설명:**\n- 특정 장소의 정보를 업데이트합니다.\n- 사용자 정보는 JWT Token에서 추출됩니다.\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 4,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## ObjectController. 시스템 객체(장소, 호출, 미션 등)를 관리하는 API입니다.\n### 4. GET /api/Object/Call\n\n모든 호출(Call) 정보를 조회합니다.\n\n**Endpoint:** `GET /api/Object/Call`\n\n**Response:**\n```json\n[\n  {\n    \"CODE\": \"AA001_20250319_P001\",\n    \"CALL_DT\": \"20250319\",\n    \"CALL_ID\": \"AA001\",\n    \"CALL_TYPE\": \"1\",\n    \"CALLER\": \"PLC_01\",\n    \"CALL_PLACE\": \"P001\",\n    \"PARAM\": \"0\",\n    \"CALL_QUANTITY\": 1,\n    \"CALL_PRIORITY\": 5,\n    \"REPEAT_COUNT\": 0,\n    \"REPEAT_DELAY\": 0,\n    \"USE_YN\": \"Y\",\n    \"STS\": \"A\",\n    \"REG_ID\": \"SYSTEM\",\n    \"REG_DT\": \"2025-03-19T10:30:00\",\n    \"MOD_ID\": \"SYSTEM\",\n    \"MOD_DT\": \"2025-03-19T10:30:00\",\n    \"MISSION\": \"M001\",\n    \"SUBMISSION\": \"SUB001\",\n    \"STATE\": \"ASSIGNED\",\n    \"UPDATE_DT\": \"2025-03-19T10:30:15\",\n    \"GROUP\": \"GROUP_A\"\n  }\n]\n```\n\n**인증:** 불필요\n\n**설명:**\n- 시스템의 모든 호출 정보를 반환합니다.\n- 비동기로 처리됩니다.\n- 500ms 캐싱이 적용됩니다.\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 5,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## ObjectController. 시스템 객체(장소, 호출, 미션 등)를 관리하는 API입니다.\n### 5. GET /api/Object/Mission\n\n모든 미션(Mission) 정보를 조회합니다.\n\n**Endpoint:** `GET /api/Object/Mission`\n\n**Response:**\n```json\n[\n  {\n    \"CODE\": \"CMD_20250319_001\",\n    \"CONTROLLER\": \"RCS_01\",\n    \"SUBJECT\": \"MOVE\",\n    \"CONTENT\": \"{\\\"from\\\":\\\"P001\\\",\\\"to\\\":\\\"P002\\\"}\",\n    \"PARAM1\": \"P001\",\n    \"PARAM2\": \"P002\",\n    \"NEED_ACK_YN\": \"Y\",\n    \"USE_YN\": \"Y\",\n    \"STS\": \"A\",\n    \"REG_ID\": \"SYSTEM\",\n    \"REG_DT\": \"2025-03-19T10:30:00\",\n    \"MOD_ID\": \"SYSTEM\",\n    \"MOD_DT\": \"2025-03-19T10:30:00\",\n    \"RUN_STATE\": \"RUNNING\",\n    \"RETRY_COUNT\": 0,\n    \"ASSIGNED_WORKER\": \"AMR_001\",\n    \"RESPONSE_CONTROLLER\": \"RCS_01\",\n    \"RESPONSE_SUBJECT\": \"MOVE_ACK\",\n    \"RESPONSE_MESSAGE\": \"Command received\",\n    \"START_DT\": \"2025-03-19T10:30:05\",\n    \"END_DT\": \"0001-01-01T00:00:00\",\n    \"DATA_1\": \"MOVING\",\n    \"DATA_2\": null,\n    \"UPDATE_DT\": \"2025-03-19T10:30:15\"\n  }\n]\n```\n\n**인증:** 불필요\n\n**설명:**\n- 시스템의 모든 미션(명령) 정보를 반환합니다.\n- 비동기로 처리됩니다.\n- 500ms 캐싱이 적용됩니다.\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 6,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## ObjectController. 시스템 객체(장소, 호출, 미션 등)를 관리하는 API입니다.\n### 6. GET /api/Object/callplaces\n\n호출 장소의 상태 정보를 조회합니다.\n\n**Endpoint:** `GET /api/Object/callplaces`\n\n**Response:**\n```json\n[\n  {\n    \"Place\": \"P001\",\n    \"MachineRequest\": 1,\n    \"AMRResponse\": 2,\n    \"PLCMode\": 1,\n    \"DockRequest\": 0\n  },\n  {\n    \"Place\": \"P002\",\n    \"MachineRequest\": 258,\n    \"AMRResponse\": 1,\n    \"PLCMode\": 2,\n    \"DockRequest\": 1\n  }\n]\n```\n\n**인증:** 불필요\n\n**설명:**\n- 각 장소의 PLC 태그 정보를 조회합니다.\n- 캐싱 기능이 적용되어 있습니다 (1.5초 간격).\n- MachineRequest는 여러 태그의 값을 합산합니다 (MachineRequest01, MachineRequest02, MachineRequest03).\n- DockRequest는 Docking Out 상태 표시를 위해 추가되었습니다.\n\n**PLC 태그 매핑:**\n- `{Place}.MachineRequest01`: 기계 요청 값 (하위 바이트)\n- `{Place}.MachineRequest02`: 기계 요청 값 (중위 바이트) × 256\n- `{Place}.MachineRequest03`: 기계 요청 값 (상위 바이트) × 256²\n- `{Place}.AMRResponse` 또는 `{Place}.AMRResponse01`: AMR 응답 값\n- `{Place}.DockStatus`: PLC 모드\n- `{Place}.DockRequest`: 도킹 요청 값\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 7,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## ObjectController. 시스템 객체(장소, 호출, 미션 등)를 관리하는 API입니다.\n### 7. GET /api/Object/mcsalarms\n\nMCS 알람 정보를 조회합니다.\n\n**Endpoint:** `GET /api/Object/mcsalarms`\n\n**Response:**\n```json\n[\n  {\n    \"Id\": \"ALM_20250319_001\",\n    \"AlarmCode\": \"1001\",\n    \"Publisher\": \"MCS_SYSTEM\",\n    \"AlarmSource\": \"P001\",\n    \"AlarmData\": \"Communication timeout with PLC\",\n    \"AlarmRunState\": 1,\n    \"AlarmDt\": \"2025-03-19T10:25:30\",\n    \"ReleaseDt\": null,\n    \"Releaser\": null\n  },\n  {\n    \"Id\": \"ALM_20250319_002\",\n    \"AlarmCode\": \"2001\",\n    \"Publisher\": \"AMR_001\",\n    \"AlarmSource\": \"AMR_001\",\n    \"AlarmData\": \"Low battery warning\",\n    \"AlarmRunState\": 1,\n    \"AlarmDt\": \"2025-03-19T10:30:00\",\n    \"ReleaseDt\": null,\n    \"Releaser\": null\n  }\n]\n```\n\n**인증:** 불필요\n\n**설명:**\n- MCS 시스템의 알람 정보를 반환합니다.\n- 비동기로 처리됩니다.\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 8,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## CommandController. AMR 명령 및 시스템 제어 명령을 처리하는 API입니다.\n### 1. PUT /api/Command/Move\n\nAMR 이동 명령을 전송합니다.\n\n**Endpoint:** `PUT /api/Command/Move`\n\n**Request Body:**\n```json\n{\n  \"Target\": \"AMR_001\",\n  \"Command\": \"move\",\n  \"Node\": {\n    \"ObjNo\": 1001,\n    \"X\": 1500,\n    \"Y\": 2000\n  }\n}\n```\n\n**Response:**\n```json\n{\n  \"Success\": true,\n  \"Error\": null\n}\n```\n\n**인증:** JWT Token 필요\n\n**설명:**\n- AMR에게 이동 명령을 전송합니다.\n- 사용자 정보는 JWT Token에서 추출됩니다.\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 9,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## CommandController. AMR 명령 및 시스템 제어 명령을 처리하는 API입니다.\n### 2. PUT /api/Command/CallState\n\n호출 상태를 변경합니다.\n\n**Endpoint:** `PUT /api/Command/CallState`\n\n**Request Body:**\n```json\n{\n  \"id\": \"REQ_001\",\n  \"call\": \"AA001_20250319_P001\",\n  \"state\": \"CANCELLED\"\n}\n```\n\n**Response:**\n```json\n{\n  \"Result\": true,\n  \"Message\": \"Call state changed successfully\"\n}\n```\n\n**인증:** JWT Token 필요\n\n**설명:**\n- 호출의 상태를 변경합니다.\n- 사용자 정보는 JWT Token에서 추출됩니다.\n- state 값: WAITING, ASSIGNED, COMPLETED, CANCELLED 등\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 10,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## CommandController. AMR 명령 및 시스템 제어 명령을 처리하는 API입니다.\n### 3. PUT /api/Command/CommandState\n\n명령 상태를 변경합니다.\n\n**Endpoint:** `PUT /api/Command/CommandState`\n\n**Request Body:**\n```json\n{\n  \"id\": \"REQ_002\",\n  \"mission\": \"CMD_20250319_001\",\n  \"state\": \"PAUSED\"\n}\n```\n\n**Response:**\n```json\n{\n  \"Result\": true,\n  \"Message\": \"Command state changed successfully\"\n}\n```\n\n**인증:** JWT Token 필요\n\n**설명:**\n- 명령의 상태를 변경합니다.\n- 사용자 정보는 JWT Token에서 추출됩니다.\n- state 값: READY, RUNNING, PAUSED, COMPLETED, FAILED 등\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 11,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## CommandController. AMR 명령 및 시스템 제어 명령을 처리하는 API입니다.\n### 4. PUT /api/Command/manualcall\n\n수동 호출을 생성합니다.\n\n**Endpoint:** `PUT /api/Command/manualcall`\n\n**Request Body:**\n```json\n{\n  \"id\": \"MANUAL_REQ_001\",\n  \"code\": \"MC001\",\n  \"place\": \"P001\",\n  \"payloadType\": \"PALLET\",\n  \"quantity\": \"2\",\n  \"param\": \"0\",\n  \"repeatCount\": 1,\n  \"repeatDelay\": 0\n}\n```\n\n**Response:**\n```json\n{\n  \"Result\": true,\n  \"Message\": \"Manual call created successfully\"\n}\n```\n\n**인증:** JWT Token 필요\n\n**설명:**\n- 수동으로 호출을 생성합니다.\n- 사용자 정보는 JWT Token에서 추출됩니다.\n- repeatCount: 반복 횟수, repeatDelay: 반복 간 지연시간(초)\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 12,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## CommandController. AMR 명령 및 시스템 제어 명령을 처리하는 API입니다.\n### 5. PUT /api/Command/manualcommand\n\n수동 명령을 생성합니다.\n\n**Endpoint:** `PUT /api/Command/manualcommand`\n\n**Request Body:**\n```json\n{\n  \"id\": \"MANUAL_CMD_001\",\n  \"subject\": \"MOVE\",\n  \"start\": \"P001\",\n  \"dest\": \"P002\",\n  \"robot\": \"AMR_001\",\n  \"code\": \"MANUAL_MOVE_001\"\n}\n```\n\n**Response:**\n```json\n{\n  \"Result\": true,\n  \"Message\": \"Manual command created successfully\"\n}\n```\n\n**인증:** JWT Token 필요\n\n**설명:**\n- 수동으로 명령을 생성합니다.\n- 사용자 정보는 JWT Token에서 추출됩니다.\n- subject: 명령 종류 (MOVE, CHARGE, DOCK 등)\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 13,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## CommandController. AMR 명령 및 시스템 제어 명령을 처리하는 API입니다.\n### 6. PUT /api/Command/retrycommand\n\n명령을 재시도합니다.\n\n**Endpoint:** `PUT /api/Command/retrycommand`\n\n**Request Body:**\n```json\n{\n  \"id\": \"RETRY_REQ_001\",\n  \"mission\": \"CMD_20250319_001\",\n  \"robot\": \"AMR_002\"\n}\n```\n\n**Response:**\n```json\n{\n  \"Result\": true,\n  \"Message\": \"Command retry initiated successfully\"\n}\n```\n\n**인증:** JWT Token 필요\n\n**설명:**\n- 실패한 명령을 재시도합니다.\n- 사용자 정보는 JWT Token에서 추출됩니다.\n- robot 파라미터로 다른 로봇에 재할당 가능\n\n---\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 14,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## 공통 정보\n### 인증\n- JWT(JSON Web Token) 기반 인증을 사용합니다.\n- 인증이 필요한 API는 요청 헤더에 JWT Token을 포함해야 합니다.\n- Token에서 사용자 정보(UserId)를 추출하여 사용합니다.\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 15,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## 공통 정보\n### 응답 형식\n- 모든 응답은 JSON 형식입니다.\n- Content-Type: `application/json`\n- Encoding: `UTF-8`\n- Formatting: `Indented` (가독성을 위한 들여쓰기)\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 16,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## 공통 정보\n### HTTP 상태 코드\n- `200 OK`: 요청이 성공적으로 처리됨\n- 기타 상태 코드는 인증 실패 등의 경우 반환될 수 있음\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 17,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## 공통 정보\n### 비동기 처리\n- `ObjectController`의 대부분의 GET 메서드는 비동기(`async/await`)로 처리됩니다.\n- 대용량 데이터 조회 시에도 서버 성능에 영향을 최소화합니다.\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 18,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## 공통 정보\n### 캐싱\n- `callplaces` API는 1.5초 캐싱을 적용하여 PLC 조회 부하를 줄입니다.\n\n\n",
+        "source": "MCS_api_doc.md"
+    },
+    {
+        "id": 19,
+        "preprocessed": "# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.\n## 참고사항\n- 일부 조회 API(places, Call, Mission)는 인증 로직이 구현되어 있지 않아 인증 없이 접근 가능합니다.\n- 마지막 업데이트: 2025-03-19\n- DockRequest 필드 추가 (Docking Out 상태 표시용)\n",
+        "source": "MCS_api_doc.md"
+    }
+]

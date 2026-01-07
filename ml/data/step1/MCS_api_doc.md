@@ -1,20 +1,6 @@
-# MCS.Backend API 문서
+# MCS.Backend API 문서. MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.
 
-## 개요
-MCS(Material Control System) Backend API 문서입니다. 이 API는 AMR(Autonomous Mobile Robot) 시스템을 제어하고 모니터링하기 위한 RESTful API를 제공합니다.
-
----
-
-## 목차
-1. [PLCController](#plccontroller)
-2. [ObjectController](#objectcontroller)
-3. [CommandController](#commandcontroller)
-
----
-
-## PLCController
-
-PLC(Programmable Logic Controller) 센서 값을 관리하는 API입니다.
+## PLCController. PLC(Programmable Logic Controller) 센서 값을 관리하는 API입니다.
 
 ### 1. PUT /api/PLC/sensorvalue
 
@@ -46,9 +32,7 @@ PLC(Programmable Logic Controller) 센서 값을 관리하는 API입니다.
 
 ---
 
-## ObjectController
-
-시스템 객체(장소, 호출, 미션 등)를 관리하는 API입니다.
+## ObjectController. 시스템 객체(장소, 호출, 미션 등)를 관리하는 API입니다.
 
 ### 1. GET /api/Object/Hello
 
@@ -310,9 +294,7 @@ MCS 알람 정보를 조회합니다.
 
 ---
 
-## CommandController
-
-AMR 명령 및 시스템 제어 명령을 처리하는 API입니다.
+## CommandController. AMR 명령 및 시스템 제어 명령을 처리하는 API입니다.
 
 ### 1. PUT /api/Command/Move
 
@@ -541,14 +523,8 @@ AMR 이동 명령을 전송합니다.
 ### 캐싱
 - `callplaces` API는 1.5초 캐싱을 적용하여 PLC 조회 부하를 줄입니다.
 
----
-
-## 버전 정보
-- 마지막 업데이트: 2025-03-19
-- DockRequest 필드 추가 (Docking Out 상태 표시용)
-
----
 
 ## 참고사항
 - 일부 조회 API(places, Call, Mission)는 인증 로직이 구현되어 있지 않아 인증 없이 접근 가능합니다.
-- 프로덕션 환경에서는 모든 API에 적절한 인증을 적용하는 것을 권장합니다.
+- 마지막 업데이트: 2025-03-19
+- DockRequest 필드 추가 (Docking Out 상태 표시용)

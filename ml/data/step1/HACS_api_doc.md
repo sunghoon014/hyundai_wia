@@ -1,22 +1,6 @@
-# HACS.WebBackend API 문서
+# Hyundai Automated Control System WebBackend API 문서
 
-## 목차
-- [1. User Controller](#1-user-controller)
-- [2. Work Order Controller](#2-work-order-controller)
-- [3. Object Controller](#3-object-controller)
-- [4. Mission Controller](#4-mission-controller)
-- [5. Command Controller](#5-command-controller)
-- [6. Traffic Controller](#6-traffic-controller)
-- [7. Resource Controller](#7-resource-controller)
-- [8. PLC Controller](#8-plc-controller)
-- [9. Record Controller](#9-record-controller)
-- [10. System Controller](#10-system-controller)
-
----
-
-## 1. User Controller
-
-사용자 인증 및 관리 API
+## 1. User Controller. 사용자 인증 및 관리 API
 
 ### 1.1 사용자 등록
 - **Endpoint**: `PUT /api/user/register`
@@ -70,7 +54,7 @@
   }
 }
 ```
-- **Status Code**: 
+- **Status Code**:
   - 200 OK
   - 401 Unauthorized (잘못된 ID/비밀번호)
   - 403 Forbidden (비활성 사용자)
@@ -84,9 +68,7 @@
 
 ---
 
-## 2. Work Order Controller
-
-작업 오더 관리 API
+## 2. Work Order Controller. 작업 오더 관리 API
 
 ### 2.1 실행중인 작업 조회
 - **Endpoint**: `GET /api/workorder/running`
@@ -136,9 +118,7 @@
 
 ---
 
-## 3. Object Controller
-
-맵 객체 및 AMR 상태 관리 API
+## 3. Object Controller. 맵 객체 및 AMR 상태 관리 API
 
 ### 3.1 기본 테스트 엔드포인트
 - **Endpoint**: `GET /api/object/default`
@@ -624,9 +604,7 @@
 
 ---
 
-## 4. Mission Controller
-
-미션 관리 API
+## 4. Mission Controller. 미션 관리 API
 
 ### 4.1 실행중인 미션 조회
 - **Endpoint**: `GET /api/mission/running`
@@ -813,9 +791,7 @@
 
 ---
 
-## 5. Command Controller
-
-AMR 제어 명령 API (모든 엔드포인트는 JWT 토큰 필요)
+## 5. Command Controller. AMR 제어 명령 API (모든 엔드포인트는 JWT 토큰 필요)
 
 ### 5.1 작업 취소
 - **Endpoint**: `PUT /api/command/cancel`
@@ -1226,9 +1202,7 @@ AMR 제어 명령 API (모든 엔드포인트는 JWT 토큰 필요)
 
 ---
 
-## 6. Traffic Controller
-
-교통 상태 조회 API
+## 6. Traffic Controller. 교통 상태 조회 API
 
 ### 6.1 교통 상태 조회
 - **Endpoint**: `GET /api/traffic/status`
@@ -1256,9 +1230,7 @@ AMR 제어 명령 API (모든 엔드포인트는 JWT 토큰 필요)
 
 ---
 
-## 7. Resource Controller
-
-서버 리소스 모니터링 API
+## 7. Resource Controller. 서버 리소스 모니터링 API
 
 ### 7.1 서버 리소스 조회 (방식 1)
 - **Endpoint**: `GET /api/resource/serverresource`
@@ -1294,9 +1266,7 @@ AMR 제어 명령 API (모든 엔드포인트는 JWT 토큰 필요)
 
 ---
 
-## 8. PLC Controller
-
-PLC 센서 관리 API
+## 8. PLC Controller. PLC 센서 관리 API
 
 ### 8.1 PLC 목록 조회
 - **Endpoint**: `GET /api/plc/list`
@@ -1389,9 +1359,7 @@ PLC 센서 관리 API
 
 ---
 
-## 9. Record Controller
-
-녹화 데이터 관리 API
+## 9. Record Controller. 녹화 데이터 관리 API
 
 ### 9.1 녹화 목록 조회
 - **Endpoint**: `GET /api/record/list?id={recordId}`
@@ -1452,9 +1420,7 @@ PLC 센서 관리 API
 
 ---
 
-## 10. System Controller
-
-시스템 관리 API
+## 10. System Controller. 시스템 관리 API
 
 ### 10.1 메모리 최적화
 - **Endpoint**: `PUT /api/system/memory-optimize`
@@ -1514,18 +1480,13 @@ PLC 센서 관리 API
 }
 ```
 
----
 
-## 버전 정보
+### 참고사항
 - **API 버전**: 1.0
 - **프레임워크**: ASP.NET Web API
 - **인증**: JWT (JSON Web Token)
 - **데이터 형식**: JSON
 - **문자 인코딩**: UTF-8
-
----
-
-## 참고사항
 
 1. 모든 날짜/시간은 ISO 8601 형식을 사용합니다
 2. 녹화 ID는 "YYYYMMDDHHMMSS" 형식의 14자리 문자열 또는 "current"를 사용합니다

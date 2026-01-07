@@ -30,10 +30,6 @@ STEP_1_1_PREPROCESSING_PROMPT = """# Role
 - Input Text: "HMI에서 Call Cancel 버튼을 누르세요."
 - **Output:** "**시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 설비 HMI 화면의 [Call Cancel] 버튼을 눌러 호출 신호를 초기화해야 한다."
 
-# Input Data
-- Context Chain: {breadcrumbs}
-- Raw Text: {raw_content}
-
 # Output
 (재작성된 텍스트만 출력)"""
 
@@ -73,6 +69,60 @@ STEP_1_2_SYNTHETIC_TEXTBOOK_PROMPT = """# Role
 {grouped_text}
 
 # Output Format (Markdown)"""
+
+STEP_1_2_SYNTHETIC_SPECIFIC_PROMPT = """# Role
+당신은 BMA 시스템의 **수석 소프트웨어 아키텍트**이자 **API 문서화 전문가(Documentation Specialist)**입니다.
+입력된 [API Raw Data]를 바탕으로, 개발자와 에이전트가 참고할 수 있는 **상세한 API 기술 명세서(Technical Specification)**를 작성하십시오.
+
+# Goal
+입력된 API 정보를 단순 나열하지 말고, **"이 API가 언제 쓰이며, 어떤 데이터를 주고받는지"** 명확하게 기술하십시오.
+
+# Writing Guidelines
+1. **정의(Definition):** 해당 API의 기능과 목적을 한 문장으로 명확히 정의하십시오.
+2. **기술적 상세(Technical Details):** Endpoint, HTTP Method, Header, Body 파라미터의 데이터 타입과 필수 여부를 서술하십시오.
+3. **사용 사례(Use Case):** 이 API가 실제 BMA 공정 시나리오에서 어떤 상황(예: 에러 리셋, 좌표 보정)에 사용되는지 예시를 들어 설명하십시오.
+4. **스타일:** 건조하고 정확한 기술 문서체("~한다", "~을 반환한다")를 사용하십시오.
+
+# Output Example
+## [API] 작업 취소 명령 (Cancel Command)
+
+**1. 개요**
+`PUT /api/command/cancel` API는 특정 AMR(Target)에 할당된 현재 작업을 즉시 중단시키는 비상 제어 명령이다. 주로 충돌 위험이 감지되거나 프로세스 교착 상태(Deadlock)를 해소하기 위한 안전 조치로 사용된다.
+
+**2. 요청 명세 (Request Specification)**
+- **Endpoint:** `/api/command/cancel`
+- **Method:** `PUT`
+- **Header:** `Authorization: Bearer {Token}` (JWT 인증 필수)
+- **Body Parameters:**
+  - `Target` (String, Required): 제어 대상 로봇의 네트워크 ID (예: "R_101").
+
+**3. 동작 메커니즘**
+이 명령이 수신되면 ACS 서버는 해당 로봇의 모터 제어기에 Stop 신호를 전송하고, 실행 중인 미션 스택을 초기화한다. 성공 시 `{"Success": true}`를 반환하며, 로봇은 Idle 상태로 전환된다."""
+
+STEP_1_2_SYNTHETIC_SOP_PROMPT = """# Role
+당신은 BMA 공정의 **표준 운영 절차(SOP) 관리자**이자 **프로세스 엔지니어**입니다.
+입력된 [시나리오]는 현장 엔지니어를 위한 요약된 절차 목록입니다. 이를 **완결된 줄글 형태의 표준 운영 절차서(SOP Document)**로 확장하여 작성하십시오.
+
+# Goal
+단순히 "A 하고 B 한다"가 아니라, **"왜 A 다음에 B를 해야 하는지"**에 대한 인과관계와 당위성을 설명하여, 읽는 이가 프로세스의 흐름을 논리적으로 이해하도록 하십시오.
+
+# Writing Guidelines
+1. **흐름 서술(Flow Description):** 번호 매기기 대신, "우선 ~를 수행한다. 그 후 ~가 확인되면 ~를 실행한다"와 같은 자연스러운 연결어미를 사용하십시오.
+2. **목적 명시(Purpose):** 각 단계가 왜 필요한지 설명하십시오.
+   - (예: "안전 사고 방지를 위해 Cancel을 먼저 수행한다", "데이터 정합성을 위해 Status를 먼저 조회한다")
+3. **전문 용어 유지:** `dock_reset`, `Retry` 등의 고유 용어는 그대로 사용하십시오.
+
+# Output Example
+## [SOP] 차상 작업 전 신호 오류 복구 절차 (Scenario 3)
+
+**1. 절차 개요**
+본 절차는 AMR이 도킹에 성공했으나, 설비(PLC)와의 신호 인터페이스(U_REQ, READY 등)가 동기화되지 않아 작업이 지연될 때 수행하는 표준 복구 프로세스다.
+
+**2. 상세 수행 절차**
+가장 먼저 시스템은 `GET /api/object/status`를 통해 AMR의 현재 위치와 Rack 정보를 파악해야 한다. 이는 후속 조치인 리셋 명령의 대상을 특정하기 위함이다.
+대상 확인 후, 즉시 `PUT /api/command/cancel`을 호출하여 대기 중인 잘못된 신호를 소거한다. 이후 설비 PLC의 레지스터를 초기화하기 위해 `dock_reset` 명령을 전송하고, 연속해서 `dock_ok` 신호를 인가함으로써 핸드쉐이킹 준비 상태를 강제로 동기화한다.
+마지막으로 MCS에 미션 재시도(`CallRetry`)를 요청하여 정상적인 작업 흐름으로 복귀시킨다."""
+
 
 STEP_1_3_QUESTION_GENERATION_PROMPT = """# Role
 당신은 BMA 공정 자동화 시스템 학습 데이터를 구축하는 **Data Specialist**입니다.
