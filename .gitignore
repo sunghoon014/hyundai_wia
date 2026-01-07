@@ -1,4 +1,5 @@
 .venv/
+wandb/
 # data/
 *.log
 uv.lock

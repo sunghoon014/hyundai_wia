@@ -9,7 +9,7 @@
 3. uv 활용하여 가상환경 설정
 
 ````bash
-uv sync
+uv sync --upgrade
 
 4. 가상 환경 실행
 
