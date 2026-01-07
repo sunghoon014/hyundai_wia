@@ -141,7 +141,7 @@ class OurTrainingArguments(SFTConfig):
     #     default=200,
     #     metadata={"help": "어떤 step에서 저장할지"},
     # )
-    logging_steps: int = field(default=200)
+    logging_steps: int = field(default=25)
     # save_total_limit: int = field(
     #     default=2,
     #     metadata={
@@ -198,6 +198,7 @@ class OurTrainingArguments(SFTConfig):
     # Optimizer 설정
     optim: str = field(
         default="adamw_8bit",
+        # default="adamw_torch",
         metadata={
             "help": "옵티마이저 설정, 다른 옵티마이저 확인을 위해 아래 url에서 OptimizerNames 확인"
             "Default : adamw_torch / QLoRA 사용시 : paged_adamw_8bit / adamw_8bit"

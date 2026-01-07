@@ -1,5 +1,3 @@
-"""Train knowledge model with LoRA. 추후 Unsloth으로 변경 필요."""
-
 import os
 import sys
 
@@ -12,13 +10,9 @@ import random
 import numpy as np
 import torch
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-from transformers import (
-    AutoModelForCausalLM,
-    AutoTokenizer,
-    BitsAndBytesConfig,
-    HfArgumentParser,
-)
+from transformers import HfArgumentParser
 from trl import SFTTrainer
+from unsloth import FastLanguageModel
 from utils.argumentations import (
     DataTrainingArguments,
     ModelArguments,
@@ -49,29 +43,15 @@ def main():
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
     logger.info("Load Arguments Successfully")
 
-    # QLoRA를 위한 BitsAndBytes 설정 (4bit, NF4, Double Quantization)
-    bnb_config = BitsAndBytesConfig(
+    # 모델 초기화
+    model, tokenizer = FastLanguageModel.from_pretrained(
+        model_name=model_args.model_name_or_path,
+        max_seq_length=training_args.max_seq_length,
         load_in_4bit=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.bfloat16,
-        bnb_4bit_use_double_quant=True,
+        load_in_8bit=False,
     )
-
-    # 모델 초기화 (4bit 양자화 적용)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_args.model_name_or_path,
-        quantization_config=bnb_config,
-        device_map="auto",
-    )
-
-    # k-bit 학습을 위한 모델 전처리 (Gradient Checkpointing 활성화 등)
-    model = prepare_model_for_kbit_training(model)
-    tokenizer = AutoTokenizer.from_pretrained(model_args.model_name_or_path)
-
-    # LoRA 초기화
-    lora_config = LoraConfig(
-        r=model_args.lora_r,
-        lora_alpha=model_args.lora_alpha,
+    model = FastLanguageModel.get_peft_model(
+        model,
         target_modules=[
             "q_proj",
             "k_proj",
@@ -81,11 +61,16 @@ def main():
             "up_proj",
             "down_proj",
         ],
+        r=model_args.lora_r,
+        lora_alpha=model_args.lora_alpha,
         lora_dropout=model_args.lora_dropout,
-        bias=model_args.lora_bias,
-        task_type="CAUSAL_LM",
+        lora_bias=model_args.lora_bias,
+        # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
+        use_gradient_checkpointing="unsloth",  # True or "unsloth" for very long context
+        random_state=104,
+        use_rslora=False,  # We support rank stabilized LoRA
+        loftq_config=None,  # And LoftQ
     )
-    model = get_peft_model(model, lora_config)
     logger.info(model.print_trainable_parameters())
 
     # 데이터셋 로드
@@ -101,9 +86,9 @@ def main():
     # 모델 학습
     trainer = SFTTrainer(
         model=model,
+        tokenizer=tokenizer,
         train_dataset=dataset,
         eval_dataset=None,
-        peft_config=lora_config,
         args=training_args,
     )
     # MPS issues with pin_memory
