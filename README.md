@@ -67,3 +67,10 @@ PROJECT_ROOT=/path/to/backbone_project
 # 만약 설정하지 않으면 기본값으로 8000 포트 사용됨.
 python -m main
 ```
+
+## 2. 간단한 추론
+```bash
+python ml/merge_for_vllm.py
+vllm serve vllm_model --port 8000
+python ml/simple_inference.py
+```

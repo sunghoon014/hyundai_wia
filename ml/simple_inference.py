@@ -1,56 +1,52 @@
-import os
 import sys
+import time
 
-from unsloth import FastLanguageModel  # isort: skip
-
-from datasets import Dataset
-
-sys.path.append("../")
-
-import random
-
-import numpy as np
-import torch
+from openai import OpenAI
 from transformers import HfArgumentParser
-from trl import SFTTrainer
 from utils.argumentations import (
     DataTrainingArguments,
     ModelArguments,
     OurTrainingArguments,
 )
-from utils.util import formatting_prompts_func, load_json
 
 from app.common.logger import logger
 
-SEED = 104
-# WandB 프로젝트 설정
-os.environ["WANDB_PROJECT"] = "hyundai_wia"
+sys.path.append("../")
 
-random.seed(SEED)  # python random seed 고정
-np.random.seed(SEED)  # numpy random seed 고정
-torch.manual_seed(SEED)  # torch random seed 고정
-torch.cuda.manual_seed(SEED)
-torch.cuda.manual_seed_all(SEED)
-torch.backends.cudnn.deterministic = True
-torch.backends.cudnn.benchmark = False
+# vLLM 서버 설정 (기본값)
+VLLM_API_URL = "http://localhost:8000/v1"
+VLLM_API_KEY = "EMPTY"  # vLLM은 기본적으로 키가 필요 없음
+MODEL_NAME = "vllm_model"  # serve 할 때 지정한 모델 이름 (폴더명)
 
 
 def main():
-    torch.cuda.empty_cache()
     parser = HfArgumentParser(
         (ModelArguments, DataTrainingArguments, OurTrainingArguments)
     )
-    model_args, data_args, training_args = parser.parse_args_into_dataclasses()
-    logger.info("Load Arguments Successfully")
+    if len(sys.argv) == 1:
+        model_args, data_args, training_args = parser.parse_args_into_dataclasses(
+            args=[]
+        )
+    else:
+        model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
-    # 모델 초기화
-    model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name="./checkpoints/checkpoint-40",
-        max_seq_length=training_args.max_seq_length,
-        load_in_4bit=True,
-        load_in_8bit=False,
-    )
-    FastLanguageModel.for_inference(model)
+    logger.info(f"Connecting to vLLM server at {VLLM_API_URL}...")
+
+    try:
+        client = OpenAI(base_url=VLLM_API_URL, api_key=VLLM_API_KEY)
+        # 서버 연결 테스트 (모델 리스트 조회)
+        models = client.models.list()
+        logger.info(f"Connected. Available models: {[m.id for m in models.data]}")
+        # 실제 서빙 중인 모델 이름으로 업데이트 (리스트의 첫 번째 모델 사용)
+        if models.data:
+            global MODEL_NAME
+            MODEL_NAME = models.data[0].id
+            logger.info(f"Using model: {MODEL_NAME}")
+
+    except Exception as e:
+        logger.error(f"Failed to connect to vLLM server: {e}")
+        logger.error("Please make sure 'vllm serve' is running.")
+        return
 
     message_list = [
         [
@@ -85,47 +81,32 @@ def main():
         ],
     ]
 
-    # 배치 처리를 위해 padding_side를 left로 설정 (생성 시 필수)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = "left"
+    logger.info("Sending requests to vLLM...")
 
-    texts = [
-        tokenizer.apply_chat_template(
-            msg,
-            tokenize=False,
-            add_generation_prompt=True,
-            enable_thinking=False,
-        )
-        for msg in message_list
-    ]
+    for messages in message_list:
+        start_time = time.time()
 
-    # 배치 토크나이징
-    inputs = tokenizer(texts, return_tensors="pt", padding=True, truncation=True).to(
-        "cuda"
-    )
+        try:
+            response = client.chat.completions.create(
+                model=MODEL_NAME,
+                messages=messages,
+                temperature=0.7,
+                max_tokens=512,
+                top_p=0.8,
+                # vLLM은 기본적으로 효율적인 캐싱을 사용하므로 use_cache 옵션은 불필요 (API에 없음)
+            )
 
-    logger.info("Generating responses in batch...")
-    outputs = model.generate(
-        **inputs,
-        max_new_tokens=512,
-        temperature=0.7,
-        top_p=0.8,
-        top_k=20,
-        use_cache=True,
-    )
+            answer = response.choices[0].message.content
+            elapsed = time.time() - start_time
 
-    # 입력 부분 제외하고 생성된 부분만 디코딩
-    generated_ids = outputs[:, inputs.input_ids.shape[1] :]
-    decoded_outputs = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+            logger.info(f"Question: {messages[-1]['content']}")
+            logger.info(f"Answer: {answer}")
+            logger.info(f"Latency: {elapsed:.2f}s")
+            logger.info("-" * 100)
+            logger.info("\n")
 
-    for i, (msg, response) in enumerate(
-        zip(message_list, decoded_outputs, strict=False)
-    ):
-        logger.info(f"Question: {msg[-1]['content']}")
-        logger.info(f"Answer: {response}")
-        logger.info("-" * 100)
-        logger.info("\n")
+        except Exception as e:
+            logger.error(f"Error during inference: {e}")
 
 
 if __name__ == "__main__":
