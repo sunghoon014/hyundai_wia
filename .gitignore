@@ -1,5 +1,7 @@
 .venv/
 wandb/
+ml/checkpoints/
+ml/unsloth_compiled_cache/
 # data/
 *.log
 uv.lock

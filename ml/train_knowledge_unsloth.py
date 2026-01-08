@@ -64,7 +64,7 @@ def main():
         r=model_args.lora_r,
         lora_alpha=model_args.lora_alpha,
         lora_dropout=model_args.lora_dropout,
-        lora_bias="none",
+        bias="none",
         # [NEW] "unsloth" uses 30% less VRAM, fits 2x larger batch sizes!
         use_gradient_checkpointing="unsloth",  # True or "unsloth" for very long context
         random_state=104,

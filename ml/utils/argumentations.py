@@ -123,23 +123,23 @@ class OurTrainingArguments(SFTConfig):
     #     default=5,
     #     metadata={"help": "어떤 step에서 저장할지"},
     # )
-    # save_steps: int = field(
-    #     default=200,
-    #     metadata={"help": "어떤 step에서 저장할지"},
-    # )
-    logging_steps: int = field(default=25)
-    # save_total_limit: int = field(
-    #     default=2,
-    #     metadata={
-    #         "help": "가장 좋은 체크포인트 n개만 저장하여 이전 모델을 덮어씌우도록 설정"
-    #     },
-    # )
+    save_steps: int = field(
+        default=5,
+        metadata={"help": "어떤 step에서 저장할지"},
+    )
+    logging_steps: int = field(default=1)
+    save_total_limit: int = field(
+        default=2,
+        metadata={
+            "help": "가장 좋은 체크포인트 n개만 저장하여 이전 모델을 덮어씌우도록 설정"
+        },
+    )
     # load_best_model_at_end: bool = field(
     #     default=True,
     #     metadata={"help": "가장 좋은 모델 로드"},
     # )
     per_device_train_batch_size: int = field(
-        default=8,
+        default=16,
         metadata={
             "help": "학습 중 장치당 배치 크기"
             "GPU 메모리에 따라 줄여서 사용 / 너무 큰 배치는 지양"
@@ -154,7 +154,7 @@ class OurTrainingArguments(SFTConfig):
     #     },
     # )
     gradient_accumulation_steps: int = field(
-        default=2,
+        default=1,
         metadata={
             "help": "그래디언트 누적을 위한 스텝 수"
             "GPU 자원이 부족할 시 배치를 줄이고 누적 수를 늘려 학습"
