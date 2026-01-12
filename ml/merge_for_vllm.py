@@ -1,5 +1,6 @@
 import sys
 
+sys.path.append("../")
 from unsloth import FastLanguageModel  # isort: skip
 from transformers import HfArgumentParser
 from utils.argumentations import (
@@ -9,8 +10,6 @@ from utils.argumentations import (
 )
 
 from app.common.logger import logger
-
-sys.path.append("../")
 
 
 def main():
@@ -26,7 +25,7 @@ def main():
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
     # 병합할 체크포인트 경로 (필요시 수정)
-    checkpoint_path = "./checkpoints/checkpoint-50"
+    checkpoint_path = "./checkpoints/checkpoint-95"
     output_dir = "vllm_model"
 
     logger.info(f"Loading model from {checkpoint_path}...")
@@ -40,7 +39,7 @@ def main():
 
     logger.info(f"Saving merged model to {output_dir} (16bit)...")
 
-    # vLLM용으로 16bit 병합 저장 (가장 호환성 좋음)
+    # vLLM 호환성을 위해 16bit로 병합 저장 (Unsloth 가이드 권장)
     model.save_pretrained_merged(
         output_dir,
         tokenizer,

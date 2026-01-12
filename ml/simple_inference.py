@@ -1,4 +1,8 @@
 import sys
+
+sys.path.append("../")
+
+
 import time
 
 from openai import OpenAI
@@ -10,8 +14,6 @@ from utils.argumentations import (
 )
 
 from app.common.logger import logger
-
-sys.path.append("../")
 
 # vLLM 서버 설정 (기본값)
 VLLM_API_URL = "http://localhost:8000/v1"
@@ -48,36 +50,48 @@ def main():
         logger.error("Please make sure 'vllm serve' is running.")
         return
 
+    # message_list = [
+    #     [
+    #         {
+    #             "role": "user",
+    #             "content": "BMA 공정에서 발생하는 [70012] T4 TIME OVER ALARM의 발생 메커니즘과 근본 원인을 PLC와 AMR 간의 인터페이스 관점에서 상세히 설명해줘.",
+    #         }
+    #     ],
+    #     [
+    #         {
+    #             "role": "user",
+    #             "content": "PUT /api/plc/placecommand API의 기능 정의와 이 API를 호출할 때 필요한 파라미터 구조에 대해 기술 명세서 형식으로 서술해봐.",
+    #         }
+    #     ],
+    #     [
+    #         {
+    #             "role": "user",
+    #             "content": "차상 작업 전 신호 오류(Scenario 3)를 복구할 때, 왜 dock_reset을 먼저 하고 나서 dock_ok를 보내야 하는지 논리적인 이유를 설명해줘.",
+    #         }
+    #     ],
+    #     [
+    #         {
+    #             "role": "user",
+    #             "content": "0.3T AMR(Box)과 1T AMR(Lift)에서 '끼임' 혹은 '센서 오류'가 발생했을 때의 물리적 조치 방법의 차이를 비교해서 설명해줘.",
+    #         }
+    #     ],
+    #     [
+    #         {
+    #             "role": "user",
+    #             "content": "BMA 공정 AMR의 [99999] 터보 부스트 과열 알람에 대해 설명해줘.",
+    #         }
+    #     ],
+    # ]
     message_list = [
         [
             {
-                "role": "user",
-                "content": "BMA 공정에서 발생하는 [70012] T4 TIME OVER ALARM의 발생 메커니즘과 근본 원인을 PLC와 AMR 간의 인터페이스 관점에서 상세히 설명해줘.",
-            }
-        ],
-        [
+                "role": "system",
+                "content": "당신은 BMA(Battery Module Assembly) 공정의 자동화 시스템을 설계한 수석 아키텍트(Chief Architect)이자 공학 교수입니다.",
+            },
             {
                 "role": "user",
-                "content": "PUT /api/plc/placecommand API의 기능 정의와 이 API를 호출할 때 필요한 파라미터 구조에 대해 기술 명세서 형식으로 서술해봐.",
-            }
-        ],
-        [
-            {
-                "role": "user",
-                "content": "차상 작업 전 신호 오류(Scenario 3)를 복구할 때, 왜 dock_reset을 먼저 하고 나서 dock_ok를 보내야 하는지 논리적인 이유를 설명해줘.",
-            }
-        ],
-        [
-            {
-                "role": "user",
-                "content": "0.3T AMR(Box)과 1T AMR(Lift)에서 '끼임' 혹은 '센서 오류'가 발생했을 때의 물리적 조치 방법의 차이를 비교해서 설명해줘.",
-            }
-        ],
-        [
-            {
-                "role": "user",
-                "content": "BMA 공정 AMR의 [99999] 터보 부스트 과열 알람에 대해 설명해줘.",
-            }
+                "content": "AMR의 도킹 전 위치 인식 실패 시 발생하는 에러 대응 및 복구 절차 전반에 대해 기술 백서 형식으로 상세히 서술하시오.",
+            },
         ],
     ]
 
@@ -91,7 +105,7 @@ def main():
                 model=MODEL_NAME,
                 messages=messages,
                 temperature=0.7,
-                max_tokens=512,
+                max_tokens=2024,
                 top_p=0.8,
                 # vLLM은 기본적으로 효율적인 캐싱을 사용하므로 use_cache 옵션은 불필요 (API에 없음)
             )

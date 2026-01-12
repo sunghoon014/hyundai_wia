@@ -70,18 +70,19 @@ STEP_1_2_SYNTHETIC_TEXTBOOK_PROMPT = """# Role
 
 # Output Format (Markdown)"""
 
-STEP_1_2_SYNTHETIC_SPECIFIC_PROMPT = """# Role
+SYNTHETIC_SPECIFIC_PROMPT = """# Role
 당신은 BMA 시스템의 **수석 소프트웨어 아키텍트**이자 **API 문서화 전문가(Documentation Specialist)**입니다.
 입력된 [API Raw Data]를 바탕으로, 개발자와 에이전트가 참고할 수 있는 **상세한 API 기술 명세서(Technical Specification)**를 작성하십시오.
 
 # Goal
-입력된 API 정보를 단순 나열하지 말고, **"이 API가 언제 쓰이며, 어떤 데이터를 주고받는지"** 명확하게 기술하십시오.
+입력된 API 정보를 단순 나열하지 말고, **"이 API가 언제 쓰이며(Context), 정확히 어떤 JSON 구조로 호출해야 하는지(Syntax)"**를 명확하게 기술하십시오.
 
 # Writing Guidelines
 1. **정의(Definition):** 해당 API의 기능과 목적을 한 문장으로 명확히 정의하십시오.
-2. **기술적 상세(Technical Details):** Endpoint, HTTP Method, Header, Body 파라미터의 데이터 타입과 필수 여부를 서술하십시오.
+2. **기술적 상세(Technical Details):** Endpoint, HTTP Method, Header 정보를 서술하고, Body 파라미터는 **표(Table)나 글머리 기호**로 타입과 필수 여부를 명시하십시오.
 3. **사용 사례(Use Case):** 이 API가 실제 BMA 공정 시나리오에서 어떤 상황(예: 에러 리셋, 좌표 보정)에 사용되는지 예시를 들어 설명하십시오.
-4. **스타일:** 건조하고 정확한 기술 문서체("~한다", "~을 반환한다")를 사용하십시오.
+4. **JSON 예시(Critical):** 설명만으로는 부족합니다. 반드시 **실제 호출 가능한 형태의 완성된 JSON Request Body 코드 블록**을 포함하십시오.
+5. **스타일:** 건조하고 정확한 기술 문서체("~한다", "~을 반환한다")를 사용하십시오.
 
 # Output Example
 ## [API] 작업 취소 명령 (Cancel Command)
@@ -94,34 +95,79 @@ STEP_1_2_SYNTHETIC_SPECIFIC_PROMPT = """# Role
 - **Method:** `PUT`
 - **Header:** `Authorization: Bearer {Token}` (JWT 인증 필수)
 - **Body Parameters:**
-  - `Target` (String, Required): 제어 대상 로봇의 네트워크 ID (예: "R_101").
+  - `Target` (String, Required): 제어 대상 로봇의 네트워크 ID.
 
-**3. 동작 메커니즘**
-이 명령이 수신되면 ACS 서버는 해당 로봇의 모터 제어기에 Stop 신호를 전송하고, 실행 중인 미션 스택을 초기화한다. 성공 시 `{"Success": true}`를 반환하며, 로봇은 Idle 상태로 전환된다."""
+**3. 요청 예시 (Request Body Example)**
+```json
+{
+  "Target": "R_101",
+  "Force": true,
+  "Reason": "Emergency Stop"
+}
+..."""
 
-STEP_1_2_SYNTHETIC_SOP_PROMPT = """# Role
-당신은 BMA 공정의 **표준 운영 절차(SOP) 관리자**이자 **프로세스 엔지니어**입니다.
-입력된 [시나리오]는 현장 엔지니어를 위한 요약된 절차 목록입니다. 이를 **완결된 줄글 형태의 표준 운영 절차서(SOP Document)**로 확장하여 작성하십시오.
 
-# Goal
-단순히 "A 하고 B 한다"가 아니라, **"왜 A 다음에 B를 해야 하는지"**에 대한 인과관계와 당위성을 설명하여, 읽는 이가 프로세스의 흐름을 논리적으로 이해하도록 하십시오.
+# 시나리오 증강을 위한 4가지 스타일 프롬프트
+SOP_AUGMENTATION_PROMPTS = {
+    # 1. 표준 운영 절차서 (Type A: Standard SOP)
+    # 목적: "특정 에러"에 대한 "공식 절차"임을 명시
+    "STANDARD_SOP": """# Role
+당신은 BMA 공정의 **표준 운영 절차(SOP) 관리자**입니다.
+입력된 [Target Situation]과 [Recovery Logic]을 결합하여, 현장 엔지니어가 준수해야 할 **'표준 복구 절차서(SOP Document)'**를 작성하십시오.
 
 # Writing Guidelines
-1. **흐름 서술(Flow Description):** 번호 매기기 대신, "우선 ~를 수행한다. 그 후 ~가 확인되면 ~를 실행한다"와 같은 자연스러운 연결어미를 사용하십시오.
-2. **목적 명시(Purpose):** 각 단계가 왜 필요한지 설명하십시오.
-   - (예: "안전 사고 방지를 위해 Cancel을 먼저 수행한다", "데이터 정합성을 위해 Status를 먼저 조회한다")
-3. **전문 용어 유지:** `dock_reset`, `Retry` 등의 고유 용어는 그대로 사용하십시오.
+1. **문서 제목:** 반드시 입력된 **[Error Code]와 [Name]을 포함**하여 작성하십시오. (예: "표준 절차: [80018] Dock Not Find 복구")
+2. **문맥 반영:** 로직의 단계를 서술할 때, **[Target Situation]의 특이사항(Reasoning)**을 근거로 제시하십시오.
+   - (Bad): "3단계로 Undock을 수행한다."
+   - (Good): "3단계: 마커 재인식을 위한 시야 확보를 위해, Undock 명령을 수행하여 로봇을 후진시킨다."
+3. **흐름 서술:** 인과관계가 명확한 건조한 문체("~수행함", "~확인")를 사용하십시오.
+4. **전문 용어:** API/명령어는 영문 그대로 표기하십시오.
+""",
+    # 2. 현장 대응 매뉴얼 (Type B: Field Manual)
+    # 목적: "이 에러 떴어? 그럼 이렇게 해" (조건 반사)
+    "FIELD_MANUAL": """# Role
+당신은 신입 사원을 교육하는 **현장 기술 선임(Senior Technician)**입니다.
+입력된 [Target Situation]이 발생했을 때, 당황하지 않고 조치할 수 있는 **'현장 트러블슈팅 가이드'**를 작성하십시오.
 
-# Output Example
-## [SOP] 차상 작업 전 신호 오류 복구 절차 (Scenario 3)
+# Writing Guidelines
+1. **상황 인식:** 도입부에서 "지금 HMI 화면에 **[Error Code]**가 떴나요? 로봇이 **[Symptom]** 상태인가요?"라고 구체적으로 물어보십시오.
+2. **지시형 문체:** "~하세요", "~누르세요" 처럼 명확한 행동 지시어를 사용하십시오.
+3. **이유 설명:** 행동 지시 뒤에 간단히 이유를 덧붙이세요. (예: "로봇이 너무 틀어져 있으니 Undock으로 빼내야 합니다.")
+4. **주의사항:** [Target Situation]의 특이사항을 참고하여 안전 주의사항을 강조하십시오.
+""",
+    # 3. 사고 분석 리포트 (Type C: Incident Report)
+    # 목적: "그 에러"가 발생했던 "실제 사례" 만들기
+    "INCIDENT_REPORT": """# Role
+당신은 설비 보전팀의 **QA 분석가(Quality Assurance Analyst)**입니다.
+과거에 **[Target Situation]**의 에러가 발생했으나, **[Recovery Logic]**을 준수하여 해결한 **'성공 사례 리포트'**를 작성하십시오.
 
-**1. 절차 개요**
-본 절차는 AMR이 도킹에 성공했으나, 설비(PLC)와의 신호 인터페이스(U_REQ, READY 등)가 동기화되지 않아 작업이 지연될 때 수행하는 표준 복구 프로세스다.
+# Writing Guidelines
+1. **개요:** 가상의 발생 일시, 로봇 ID, 그리고 **[Error Code]와 [Symptom]**을 구체적으로 명시하십시오.
+2. **해결 과정:** 작업자가 당황하지 않고 로직의 순서대로 조치해나가는 과정을 줄글로 묘사하십시오.
+   - 특히 **[Target Situation]의 원인(Reasoning)**을 작업자가 파악하고 조치하는 모습을 강조하십시오.
+3. **결론:** "이 사례에서 보듯, [Error Code] 발생 시에는 반드시 [핵심 단계]를 수행해야 함"으로 마무리하십시오.
+""",
+    # 4. 기술 문답 (Type D: Tech Q&A)
+    # 목적: "이 에러에서 왜 이 로직을 쓰죠?" (심층 이해)
+    "TECH_QNA": """# Role
+당신은 자동화 시스템 **기술 자문역(Technical Consultant)**입니다.
+엔지니어가 **[Target Situation]**에 대해 질문했을 때, **[Recovery Logic]**의 기술적 당위성을 설명하는 답변을 작성하십시오.
 
-**2. 상세 수행 절차**
-가장 먼저 시스템은 `GET /api/object/status`를 통해 AMR의 현재 위치와 Rack 정보를 파악해야 한다. 이는 후속 조치인 리셋 명령의 대상을 특정하기 위함이다.
-대상 확인 후, 즉시 `PUT /api/command/cancel`을 호출하여 대기 중인 잘못된 신호를 소거한다. 이후 설비 PLC의 레지스터를 초기화하기 위해 `dock_reset` 명령을 전송하고, 연속해서 `dock_ok` 신호를 인가함으로써 핸드쉐이킹 준비 상태를 강제로 동기화한다.
-마지막으로 MCS에 미션 재시도(`CallRetry`)를 요청하여 정상적인 작업 흐름으로 복귀시킨다."""
+# Writing Guidelines
+1. **질문 생성:** 엔지니어가 **[Error Code]** 상황에서 특정 단계(예: Undock)의 필요성을 묻는 질문을 만드십시오.
+   - (예: "80018 에러 시 제자리 재시도 대신 왜 Undock을 해야 합니까?")
+2. **답변 작성:** [Target Situation]의 **특이사항(Reasoning)**을 근거로 들어 논리적으로 답변하십시오.
+3. **구조:** 답변 속에 전체 절차의 흐름을 요약하여 포함시키십시오.
+
+# Output Format (JSON)
+반드시 아래 JSON 포맷으로 출력하십시오.
+```json
+{
+  "question": "여기에는 [Error Code] 상황에서 특정 단계(예: Undock)가 왜 필요한지 묻는 날카로운 질문을 작성",
+  "answer": "여기에는 [Context/Reasoning]을 근거로 한 논리적인 답변을 작성 (전체 절차 흐름 요약 포함)"
+}
+```""",
+}
 
 
 STEP_1_3_QUESTION_GENERATION_PROMPT = """# Role
