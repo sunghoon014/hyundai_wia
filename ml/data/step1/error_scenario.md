@@ -1,10 +1,11 @@
 # 에러 처리 시나리오
-### 1. 도킹 전 알람
-
+## 시나리오 1: 도킹 전 알람 (Pre-Docking)
+### 표쥰 에러상황
 - 도킹 하기 전 도킹 위치 정밀 확인 실패
 - 알람코드
     - [80018] DOCK_NOT_FIND
-- API 활용 에러 클리어 시나리오
+- 뼈대: Status Check → Cancel → MCS Retry (Mission ID 조회 → Retry → Auto)
+- API 활용 상세
     1. AMR 상태 조회
 
         ```python
@@ -42,6 +43,9 @@
         ```
 
     6. ACS AMR AUTO로 변환 (`PUT /api/command/mode`)
+
+###
+
 
 ### 2. 도킹 중 알람
 
