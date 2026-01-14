@@ -25,7 +25,7 @@ def main():
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
     # 병합할 체크포인트 경로 (필요시 수정)
-    checkpoint_path = "./checkpoints/checkpoint-95"
+    checkpoint_path = "./checkpoints/checkpoint-162"
     output_dir = "vllm_model"
 
     logger.info(f"Loading model from {checkpoint_path}...")

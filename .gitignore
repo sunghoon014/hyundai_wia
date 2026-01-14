@@ -6,6 +6,8 @@ ml/unsloth_compiled_cache/
 *.log
 uv.lock
 .env
+ml/vllm_model/
+unsloth_compiled_cache/
 
 # data
 */xml2json/output

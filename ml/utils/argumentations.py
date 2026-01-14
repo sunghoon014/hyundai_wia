@@ -23,7 +23,7 @@ class ModelArguments:
         },
     )
     lora_alpha: int = field(
-        default=32,
+        default=64,
         metadata={
             "help": "학습 할 에폭 수"
             "LLM 학습 시 에폭 수를 1~3으로 줄여서 실험 진행 필요"
@@ -48,7 +48,7 @@ class DataTrainingArguments:
 
     # 학습 데이터 불러오기
     dataset_name: str = field(
-        default="./data/step1/final_qwen_conversation_format.json",
+        default="./data/final_qwen_conversation_format.json",
         metadata={"help": "The name of the dataset to use."},
     )
     # 검증 데이터 불러오기

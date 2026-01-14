@@ -82,19 +82,46 @@ def main():
     #         }
     #     ],
     # ]
+    # message_list = [
+    #     [
+    #         {
+    #             "role": "user",
+    #             "content": "BMA 자동화 시스템의 WEB ACS 운영 로직 및 AMR 전력 관리 아키텍처 전반에 대해 기술 백서 형식으로 상세히 서술하시오.",
+    #         },
+    #     ],
+    #     [
+    #         {
+    #             "role": "user",
+    #             "content": "AMR과 PLC 간의 시계열 동기화(Handshaking) 과정에서 발생하는 타임아웃 에러의 공학적 원인과, 각 제어 단계별 데이터 흐름 및 시스템적 상호작용을 분석하시오.",
+    #         },
+    #     ],
+    #     [
+    #         {
+    #             "role": "user",
+    #             "content": "AMR 상태 조회(AMR Status Retrieval) API의 기술 명세와 데이터 구조 및 관제 시스템 내 활용 방안에 대해 기술 백서 형식으로 상세히 서술하시오.",
+    #         },
+    #     ],
+    #     [
+    #         {
+    #             "role": "user",
+    #             "content": "MCS(Material Control System)를 통한 'PLC 센서 값 갱신(Update PLC Sensor Value) API'의 명세와 활용 시나리오 전반에 대해 기술 백서 형식으로 상세히 서술하시오.",
+    #         },
+    #     ],
+    # ]
     message_list = [
         [
             {
-                "role": "system",
-                "content": "당신은 BMA(Battery Module Assembly) 공정의 자동화 시스템을 설계한 수석 아키텍트(Chief Architect)이자 공학 교수입니다.",
-            },
-            {
                 "role": "user",
-                "content": "AMR의 도킹 전 위치 인식 실패 시 발생하는 에러 대응 및 복구 절차 전반에 대해 기술 백서 형식으로 상세히 서술하시오.",
+                "content": "80023 알림이 뭘 의미하는지 간단하게 말해줘..",
             },
         ],
+        # [
+        #     {
+        #         "role": "user",
+        #         "content": "70012 T4 TIME OVER 에러가 났어. 원인이 뭐고 어떻게 조치해야하는지 짧고 간단하게 말해줘.",
+        #     },
+        # ],
     ]
-
     logger.info("Sending requests to vLLM...")
 
     for messages in message_list:
@@ -104,10 +131,11 @@ def main():
             response = client.chat.completions.create(
                 model=MODEL_NAME,
                 messages=messages,
-                temperature=0.7,
+                temperature=0.1,
                 max_tokens=2024,
-                top_p=0.8,
                 # vLLM은 기본적으로 효율적인 캐싱을 사용하므로 use_cache 옵션은 불필요 (API에 없음)
+                stop=["<|im_end|>", "<|endoftext|>"],
+                extra_body={"repetition_penalty": 1.15},
             )
 
             answer = response.choices[0].message.content

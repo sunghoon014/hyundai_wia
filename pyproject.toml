@@ -39,10 +39,13 @@ dependencies = [
     "trl>=0.24.0",
     "unsloth>=2026.1.2",
     "wandb>=0.23.1",
+    "vllm>=0.13.0",
+    "huggingface-hub>=0.36.0",
 ]
 
 [tool.uv]
 package = false
+torch-backend = "auto"
 
 [tool.ruff.lint]
 # 활성화할 규칙들
