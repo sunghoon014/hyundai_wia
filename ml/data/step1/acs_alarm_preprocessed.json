@@ -1,158 +1,770 @@
 [
     {
         "id": 0,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10000 | RFID 감지 안됨                                                 | \\[10000\\] RFID not detected                                             | Warn  |\n| 테스크       | 10001 | 리프트 미션 실패                                                  | \\[10001\\] Lift mission fail                                             | Warn  |\n| 테스크       | 10002 | 턴테이블 미션 실패                                                 | \\[10002\\] Turntable mission fail                                        | Warn  |\n| 테스크       | 10003 | 도킹 중 장애물 감지                                                | \\[10003\\] Obstacle detected during docking                              | Warn  |\n| 테스크       | 10004 | 거치대 도킹 실패                                                  | \\[10004\\] Wing docking fail                                             | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 [10000] RFID 감지 안됨(RFID not detected) 경고는 주행 경로상의 RFID 태그 인식이 불가능한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 정지 위치를 확인하고 RFID 리더기와 태그의 정렬 상태를 점검해야 한다.\n\nBMA 공정 AMR의 [10001] 리프트 미션 실패(Lift mission fail) 경고는 팔레트 상하강 동작이 지정된 시간 내에 완료되지 않았음을 나타낸다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 리프트 구동부의 기계적 간섭 여부를 확인한 후 HMI를 통해 리프트 위치를 초기화해야 한다.\n\nBMA 공정 AMR의 [10002] 턴테이블 미션 실패(Turntable mission fail) 경고는 상단 턴테이블의 회전 동작이 정상 범위 내에서 종료되지 않았을 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 턴테이블의 회전 반경 내 이물질을 제거하고 수동 모드에서 원점 복귀를 수행해야 한다.\n\nBMA 공정 AMR의 [10003] 도킹 중 장애물 감지(Obstacle detected during docking) 경고는 설비 진입 및 도킹 과정에서 안전 센서가 물체를 감지하여 주행이 중단된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 도킹 경로상의 장애물을 제거한 후 주행 재개 버튼을 조작해야 한다.\n\nBMA 공정 AMR의 [10004] 거치대 도킹 실패(Wing docking fail) 경고는 AMR이 윙(Wing) 타입 거치대와의 물리적 결합 위치 정밀도 확보에 실패했음을 나타낸다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 거치대의 정위치 이탈 여부를 확인하고 AMR을 후진시킨 후 재도킹을 시도해야 한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10000 | RFID 감지 안됨                                                 | \\[10000\\] RFID not detected                                             | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 RFID 리더기가 태그 정보를 정상적으로 인식하지 못할 때 10000번 경고(RFID not detected)가 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 AMR의 정지 위치를 조정하여 RFID 태그와 리더기 사이의 통신 거리를 확보하거나 태그의 부착 상태를 점검해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 1,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10005 | 충전 도킹 실패                                                   | \\[10005\\] Charge docking fail                                           | Warn  |\n| 테스크       | 10006 | 도킹아웃 중 충돌 방지 대기중                                           | \\[10006\\] Waiting for collision protection during docking out           | Warn  |\n| 테스크       | 10007 | 도킹 비정상 완료 감지됨                                              | \\[10007\\] Docking completion WARN                                       | Warn  |\n| 테스크       | 10008 | 설비 인터락으로 인한 정지 상태                                          | \\[10008\\] Stop-state due to facility interlocks                         | Warn  |\n| 테스크       | 10009 | 도킹 인지 실패                                                   | \\[10009\\] Docking shape recognition fail                                | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 [10005] 충전 도킹 실패(Charge docking fail) 알람은 로봇이 충전 스테이션과의 물리적 결합에 실패했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 로봇의 위치를 재조정하고 충전 단자의 정렬 상태를 확인해야 한다.\n\nBMA 공정 AMR의 [10006] 도킹아웃 중 충돌 방지 대기중(Waiting for collision protection during docking out) 상태는 로봇이 도킹 해제 후 이동 경로 상의 장애물을 감지하여 일시 정지한 상황을 나타낸다.\n\nBMA 공정 AMR의 [10007] 도킹 비정상 완료 감지됨(Docking completion WARN) 알람은 도킹 프로세스는 종료되었으나 센서 데이터가 정상 범위를 벗어난 불완전한 결합 상태임을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 로봇과 스테이션의 도킹 상태를 육안으로 점검하고 재도킹을 수행해야 한다.\n\nBMA 공정 AMR의 [10008] 설비 인터락으로 인한 정지 상태(Stop-state due to facility interlocks)는 상위 제어 시스템이나 주변 설비로부터 정지 신호를 수신하여 로봇의 구동이 차단된 상태이다.\n\nBMA 공정 AMR의 [10009] 도킹 인지 실패(Docking shape recognition fail) 알람은 로봇의 비전 센서나 레이저 스캐너가 도킹 스테이션의 형상을 식별하지 못할 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 도킹 스테이션 마커의 오염 상태를 확인하고 센서의 이물질을 제거해야 한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10001 | 리프트 미션 실패                                                  | \\[10001\\] Lift mission fail                                             | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 리프트 미션 실패(Lift mission fail, 알람 코드 10001)는 로봇이 지정된 위치에서 리프트 승강 또는 하강 동작을 정상적으로 완료하지 못했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 리프트 상태와 적재물의 위치를 확인한 후 HMI를 통해 리프트 동작을 재시도하거나 미션을 초기화해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 2,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10010 | 도킹 중 장애물 감지용 3d 카메라 연결 실패                                  | \\[10010\\] Unable to activate cameras during docking                     | Warn  |\n| 테스크       | 10011 | 도킹 시작 위치 오차 발생                                             | \\[10011\\] Docking start position WARN                                   | Info  |\n| 테스크       | 10012 | 도킹 센서 감지 안됨 재시도 중                                          | \\[10012\\] Docking IR sensor not detected. Retrying                      | Info  |\n| 테스크       | 10013 | 도킹 시간 초과                                                   | \\[10013\\] Docking Timeout                                               | Warn  |\n| 테스크       | 10014 | 도킹 중 장애물 감지로 인한 일시 정지                                      | \\[10014\\] Temporary stop due to obstruction detection during docking    | Info  |",
-        "preprocessed": "BMA 공정 AMR의 [10010] 알람은 도킹 프로세스 중 장애물 감지를 위한 3D 카메라와의 통신 연결이 실패했음을 의미한다.\n\nBMA 공정 AMR의 [10011] 알람은 도킹 시작 지점의 위치 오차가 허용 범위를 초과하여 발생한 경고 상태를 나타낸다.\n\nBMA 공정 AMR의 [10012] 알람은 도킹용 IR 센서가 감지되지 않아 시스템이 자동으로 도킹을 재시도하고 있는 상태를 의미한다.\n\nBMA 공정 AMR의 [10013] 알람은 설정된 제한 시간 내에 도킹 완료 신호가 수신되지 않아 도킹 시간 초과가 발생했음을 의미한다.\n\nBMA 공정 AMR의 [10014] 알람은 도킹 경로 상에서 장애물이 감지되어 주행이 일시 정지된 상태를 나타낸다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10002 | 턴테이블 미션 실패                                                 | \\[10002\\] Turntable mission fail                                        | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 턴테이블 미션 실패(알람 코드 10002)는 로봇 상부에 탑재된 턴테이블 장치가 지정된 회전 동작을 완료하지 못했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 턴테이블의 물리적 간섭 여부를 확인하고 설비 HMI를 통해 해당 미션을 재전송하거나 장치를 원점 복귀시켜야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 3,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10015 | 도킹 센서 감지 안됨으로 인한 최종 실패                                     | \\[10015\\] Docking Fail because IR sensor not detected.                  | Error |\n| 테스크       | 10016 | 충전 도킹 실패 재시도 중                                             | \\[10016\\] Docking CHARGE sensor not detected. Retrying                  | Warn  |\n| 테스크       | 10017 | \\[PLC\\] 에러 리셋                                              | \\[10017\\] PLC is reset, but Job has not been canceled                   | Error |\n| 테스크       | 10018 | 충전 타임아웃                                                    | Charge Timeout                                                          | Info  |\n| 주행 (독자)   | 20000 | 경로 재생성                                                     | \\[20000\\] Try to create path again                                      | Info  |",
-        "preprocessed": "BMA 공정 AMR의 [10015] 에러는 도킹 과정에서 IR 센서가 감지되지 않아 최종적으로 도킹에 실패했음을 의미한다.\n\nBMA 공정 AMR의 [10016] 경고는 충전 도킹 중 충전 센서가 감지되지 않아 도킹을 재시도하고 있는 상태를 나타낸다.\n\nBMA 공정 AMR의 [10017] 에러는 PLC(Programmable Logic Controller)가 리셋되었으나 진행 중인 작업(Job)이 정상적으로 취소되지 않았을 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 제어 시스템을 통해 잔여 작업을 강제로 종료하거나 초기화해야 한다.\n\nBMA 공정 AMR의 [10018] 정보는 설정된 충전 허용 시간을 초과하여 충전 타임아웃이 발생했음을 알린다.\n\nBMA 공정 AMR의 [20000] 정보는 주행 중 장애물 발생이나 경로 이탈로 인해 시스템이 주행 경로를 재생성하고 있는 상태를 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10003 | 도킹 중 장애물 감지                                                | \\[10003\\] Obstacle detected during docking                              | Warn  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)이 도킹(Docking) 동작을 수행하는 과정에서 주행 경로 상에 장애물이 감지되면 10003 경고(Warn) 코드가 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 주변의 장애물을 제거한 후 설비 제어 화면에서 알람을 해제하고 도킹 명령을 재전송해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 4,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20001 | 경로 생성 불가                                                   | \\[20001\\] Unable to create path                                         | Warn  |\n| 주행 (독자)   | 20002 | 일시적 주행 제한                                                  | \\[20002\\] Temporary driving restriction(Not used)                       | Warn  |\n| 주행 (독자)   | 20003 | 구동부 슬립 감지                                                  | \\[20003\\] Wheel slip detected                                           | Warn  |\n| 주행 (독자)   | 20004 | 경로 상 장애물 감지로 대기중                                           | \\[20004\\] Stand by to drive due to obstacle detection on the path       | Info  |\n| 주행 (독자)   | 20005 | 주행 시스템 에러                                                  | \\[20005\\] Driving system WARN                                           | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 주행 시스템에서 발생하는 [20001] 에러는 현재 위치에서 목적지까지의 주행 경로 생성이 불가능한 상태를 의미한다.\n\nBMA 공정 AMR의 주행 시스템에서 발생하는 [20002] 에러는 일시적인 주행 제한이 설정되어 로봇의 이동이 차단된 상태를 나타낸다.\n\nBMA 공정 AMR의 주행 시스템에서 발생하는 [20003] 에러는 구동부 바퀴의 슬립(Slip) 현상이 감지되어 정상적인 주행 토크 전달이 어려운 상태를 의미한다.\n\nBMA 공정 AMR의 주행 시스템에서 발생하는 [20004] 상태는 주행 경로 상에 장애물이 감지되어 로봇이 안전을 위해 대기 중인 정보성 알림이다.\n\nBMA 공정 AMR의 주행 시스템에서 발생하는 [20005] 에러는 주행 제어 시스템 내부의 일반적인 경고(WARN) 상황이 발생했음을 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10004 | 거치대 도킹 실패                                                  | \\[10004\\] Wing docking fail                                             | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 10004(Wing docking fail) 알람은 로봇이 거치대(Station)에 진입하여 도킹을 시도하는 과정에서 기구적 정렬 불량이나 센서 감지 오류로 인해 도킹에 실패했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 로봇의 현재 위치와 거치대 사이의 간섭 여부를 확인한 후, 수동 조작 모드에서 로봇을 재정렬하거나 거치대 도킹 상태를 초기화해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 5,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20006 | 주행 중 emergency 혹은 범퍼센서 감지                                  | \\[20006\\] EMG or Bumper sensor detection while driving(Not used)        | Warn  |\n| 주행 (독자)   | 20007 | 주행 중 Cost 처리 지연 중...                                       | \\[20007\\] Cost handling is delayed while driving                        | Warn  |\n| 주행 (독자)   | 20008 | 주행 중 턴테이블 틀어짐                                              | \\[20008\\] Turntable twisted while driving                               | Warn  |\n| 주행 (독자)   | 20009 | 턴테이블 리커버리 실패                                               | \\[20009\\] Turntable recovery failed                                     | Warn  |\n| 카메라       | 20010 | 주행 중 장애물 감지용 3d 카메라 연결 실패                                  | \\[20010\\] Unable to activate cameras while driving                      | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 주행 중 비상 정지(Emergency) 스위치 또는 범퍼 센서가 물리적 접촉을 감지하면 20006 경고가 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 기구적 간섭 요인을 제거한 후 제어반의 복귀 스위치를 조작해야 한다.\n\nBMA 공정 AMR이 주행 경로상의 장애물이나 복잡한 지형으로 인해 경로 계산(Cost handling) 처리를 지연할 경우 20007 경고가 발생한다.\n\nBMA 공정 AMR의 주행 중 상단 턴테이블의 정렬 상태가 허용 범위를 벗어나 틀어지면 20008 경고가 발생한다.\n\nBMA 공정 AMR의 턴테이블 정렬 상태를 복구하기 위한 자동 보정 시퀀스가 정상적으로 완료되지 않으면 20009 경고가 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 HMI의 수동 조작 모드에서 턴테이블을 원점으로 복귀시켜야 한다.\n\nBMA 공정 AMR의 주행 중 장애물 감지를 담당하는 3D 카메라와의 통신 연결이 끊기거나 활성화에 실패하면 20010 경고가 발생한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10005 | 충전 도킹 실패                                                   | \\[10005\\] Charge docking fail                                           | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 [10005] 충전 도킹 실패(Charge docking fail) 알람은 로봇이 충전 스테이션에 진입하였으나 물리적 또는 전기적 연결이 정상적으로 이루어지지 않았음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 정지 위치와 충전 핀의 정렬 상태를 육안으로 확인한 후 HMI를 통해 로봇을 재도킹시키거나 수동으로 충전 위치를 보정해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 6,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행        | 20011 | 주행 중 후쿠요 센서 감지로 인한 감속                                      | \\[20011\\] Deceleration due to Fukuyo sensor detects                     | Info  |\n| 주행        | 20012 | 주행 중 후쿠요 센서 감지로 인한 정지                                      | \\[20012\\] Entirely stop due to Fukuyo sensor detects                    | Info  |\n| 주행        | 20013 | 주행 중 사전 허가 미획득으로 인한 일시 정지                                  | \\[20013\\] Pause by pass approval while driving                          | Warn  |\n| 주행        | 20014 | 정의되지 않은 후쿠요 센서 데이터 수신으로 인한 일시 정지                           | \\[20014\\] Pause by undefinded Hokuyo sensor data                        | Warn  |\n| H/W       | 30000 | Unicon 보드와의 통신 연결이 끊어짐                                     | \\[30000\\] Lost communication connection with Unicorn board              | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 주행 중 후쿠요(Hokuyo) 장애물 감지 센서가 물체를 감지하면 시스템은 안전을 위해 주행 속도를 즉시 감속한다.\n\nBMA 공정 AMR이 주행하는 경로 상에 장애물이 후쿠요(Hokuyo) 센서의 정지 영역 내에서 감지될 경우, AMR은 즉각적으로 주행을 중단하고 정지 상태를 유지한다.\n\nBMA 공정 AMR이 특정 구간 진입을 위한 사전 통행 허가(Pass Approval)를 획득하지 못한 상태에서 주행을 시도할 경우, 관제 시스템과의 충돌 방지를 위해 일시 정지 상태로 전환된다.\n\nBMA 공정 AMR에 장착된 후쿠요(Hokuyo) 센서로부터 규격 외의 정의되지 않은 데이터 값이 수신될 경우, 주행 안전성을 확보하기 위해 시스템은 기동을 일시 정지한다.\n\nBMA 공정 AMR 내부의 메인 제어부와 Unicon 통신 보드 간의 데이터 연결이 단절되면 하드웨어 통신 오류가 발생하며 모든 구동이 제한된다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10006 | 도킹아웃 중 충돌 방지 대기중                                           | \\[10006\\] Waiting for collision protection during docking out           | Warn  |",
+        "preprocessed": "BMA 공정의 AMR이 도킹 해제(Docking Out)를 수행하는 과정에서 주변 장애물과의 충돌 위험이 감지되면, 시스템은 안전을 위해 주행을 일시 정지하고 '10006(도킹아웃 중 충돌 방지 대기중)' 경고 상태를 유지한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 7,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30001 | 배터리 부족 (20% 이하)                                            | \\[30001\\] Battery Low (20% or less)                                     | Info  |\n| H/W       | 30002 | EMG 버튼                                                     | \\[30002\\] EMG Button pressed                                            | Info  |\n| H/W       | 30003 | BMS로부터 배터리 상태 받지 못함                                        | \\[30003\\] Battery status not received from BMS                          | Warn  |\n| H/W       | 30004 | wrong motor direction                                      | \\[30004\\] Wrong motor direction                                         | Warn  |\n| H/W       | 30005 | Unicon crc 오류                                              | \\[30005\\] Unicon crc WARN                                               | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 배터리 잔량이 20% 이하로 저하될 경우 30001(Battery Low) 알람이 발생한다.\n\nBMA 공정 AMR의 비상 정지(EMG) 버튼이 물리적으로 눌린 상태에서는 30002(EMG Button pressed) 알람이 활성화된다.\n\nBMA 공정 AMR의 제어 시스템이 BMS(Battery Management System)로부터 배터리 상태 데이터를 수신하지 못할 경우 30003(Battery status not received from BMS) 경고가 발생한다.\n\nBMA 공정 AMR 구동 모터의 회전 방향이 설정된 명령과 일치하지 않는 역방향으로 구동될 경우 30004(Wrong motor direction) 경고가 발생한다.\n\nBMA 공정 AMR의 Unicon 통신 과정에서 CRC(Cyclic Redundancy Check) 오류가 검출되면 30005(Unicon crc WARN) 경고가 발생한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10007 | 도킹 비정상 완료 감지됨                                              | \\[10007\\] Docking completion WARN                                       | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 [10007] 도킹 비정상 완료(Docking completion WARN) 알람은 로봇이 도킹 스테이션에 진입한 후 물리적 접점이나 정밀 위치 데이터가 정상 범위를 벗어나 도킹이 불완전하게 완료되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 현재 위치를 확인하고 HMI를 통해 로봇을 재도킹하거나 수동으로 위치를 보정하여 도킹 상태를 정상화해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 8,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30006 | 모터드라이브 리셋 조치됨                                              | \\[30006\\] Motor drive reset                                             | Warn  |\n| H/W       | 30007 | BMS 연결 중                                                   | \\[30007\\] Connecting with BMS                                           | Warn  |\n| H/W       | 30008 | Unicon 연결 시도중                                              | \\[30008\\] Attempting to connect with Unicon                             | Warn  |\n| H/W       | 30009 | 1번 라이다 연결되지 않음                                             | \\[30009\\] LiDAR1 not connected                                          | Warn  |\n| H/W       | 30010 | 2번 라이다 연결되지 않음                                             | \\[30010\\] LiDAR2 not connected                                          | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 [30006] 알람은 모터 드라이브의 리셋 조치가 완료되었음을 의미한다.\n\nBMA 공정 AMR의 [30007] 알람은 시스템이 배터리 관리 시스템(BMS)과 통신 연결을 수행 중인 상태임을 나타낸다.\n\nBMA 공정 AMR의 [30008] 알람은 통합 제어기인 Unicon과의 통신 연결을 시도 중인 상태를 의미한다.\n\nBMA 공정 AMR의 [30009] 알람은 장비 전방에 위치한 1번 라이다(LiDAR) 센서가 시스템과 연결되지 않은 상태임을 나타낸다.\n\nBMA 공정 AMR의 [30010] 알람은 장비 후방에 위치한 2번 라이다(LiDAR) 센서가 시스템과 연결되지 않은 상태임을 나타낸다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10008 | 설비 인터락으로 인한 정지 상태                                          | \\[10008\\] Stop-state due to facility interlocks                         | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 10008 경고 코드는 연동된 설비의 인터락(Interlock) 신호 발생으로 인해 로봇이 정지 상태로 전환되었음을 의미한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 설비와 AMR 간의 인터락 해제 조건을 확인한 후 제어 시스템을 통해 정지 상태를 해제해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 9,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30011 | 1번 카메라 연결되지 않음                                             | \\[30011\\] Camera1 not connected                                         | Warn  |\n| H/W       | 30012 | 2번 카메라 연결되지 않음                                             | \\[30012\\] Camera2 not connected                                         | Warn  |\n| H/W       | 30013 | PLC 연결 안됨                                                  | \\[30013\\] PLC not connected                                             | Warn  |\n| H/W       | 30014 | IMU 연결 안됨                                                  | \\[30014\\] IMU not connected                                             | Warn  |\n| H/W       | 30015 | 라이다 데이터 이상                                                 | \\[30015\\] Wrong lidar data                                              | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 30011 에러는 1번 카메라와 제어 시스템 간의 통신 연결이 단절된 상태를 의미한다.\n\nBMA 공정 AMR의 30012 에러는 2번 카메라와 제어 시스템 간의 통신 연결이 이루어지지 않은 상태를 나타낸다.\n\nBMA 공정 AMR의 30013 에러는 메인 제어기와 PLC(Programmable Logic Controller) 간의 데이터 통신이 불가능한 상태이다.\n\nBMA 공정 AMR의 30014 에러는 관성 측정 장치인 IMU(Inertial Measurement Unit) 센서의 연결이 해제되어 기체의 자세 및 방향 정보를 수신할 수 없는 상태를 의미한다.\n\nBMA 공정 AMR의 30015 에러는 라이다(LiDAR) 센서로부터 수신되는 거리 측정 데이터가 비정상적이거나 유효하지 않은 범위 내에 있음을 나타낸다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10009 | 도킹 인지 실패                                                   | \\[10009\\] Docking shape recognition fail                                | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 10009 알람은 로봇이 도킹 스테이션의 형상을 정상적으로 인식하지 못하여 도킹 인지에 실패했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 위치를 도킹 스테이션 정면으로 재배치하거나 센서 오염 여부를 확인한 후 HMI에서 알람을 해제해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 10,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30017 | 모터드라이브 CAN통신 에러                                            | \\[30017\\] Motor drive CAN communication WARN                            | Warn  |\n| H/W       | 30018 | MQTT 서버 통신 끊김                                              | \\[30018\\] MQTT server communication disconnected                        | Warn  |\n| H/W       | 30019 | ACS 통신 끊김                                                  | \\[30019\\] ACS communication disconnected                                | Warn  |\n| H/W       | 30020 | OSSD 발생                                                    | \\[30020\\] OSSD signal                                                   | Info  |\n| H/W       | 30021 | 충전 신호 해제로 인한 릴레이 해제 시도                                     | \\[30021\\] Attempting to turn off relay because the charge signal is off | Info  |",
-        "preprocessed": "BMA 공정 AMR의 [30017] 모터드라이브 CAN통신 에러(Motor drive CAN communication WARN)는 제어기와 모터 드라이브 간의 CAN 통신 네트워크에 이상이 발생했음을 의미한다.\n\nBMA 공정 AMR의 [30018] MQTT 서버 통신 끊김(MQTT server communication disconnected)은 로봇과 상위 관제 시스템 간의 데이터 송수신을 담당하는 MQTT 브로커와의 연결이 해제된 상태를 나타낸다.\n\nBMA 공정 AMR의 [30019] ACS 통신 끊김(ACS communication disconnected)은 로봇 제어 시스템(ACS, Autonomous Control System)과 AMR 간의 무선 또는 유선 통신이 중단된 상태이다.\n\nBMA 공정 AMR의 [30020] OSSD 발생(OSSD signal)은 안전 센서의 출력 신호 전환 장치(OSSD)가 작동하여 로봇의 안전 회로가 활성화되었음을 알리는 정보성 신호이다.\n\nBMA 공정 AMR의 [30021] 충전 신호 해제로 인한 릴레이 해제 시도(Attempting to turn off relay because the charge signal is off)는 외부 충전 신호가 차단됨에 따라 시스템이 내부 충전 릴레이의 전원을 차단하기 위해 물리적 접점 해제를 시도하는 상태를 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10010 | 도킹 중 장애물 감지용 3d 카메라 연결 실패                                  | \\[10010\\] Unable to activate cameras during docking                     | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 10010 경고(Warn)는 도킹 프로세스 수행 중 장애물 감지를 위한 3D 카메라와의 통신 연결이 활성화되지 않은 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 제어반의 카메라 케이블 연결 상태를 점검하고 시스템 재부팅을 통해 카메라 인터페이스를 초기화해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 11,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30030 | 디스크 사용량 70 퍼센트 초과                                          | \\[30030\\] Disk usage exceeds 70 percent                                 | Info  |\n| H/W       | 30031 | 디스크 사용량 80 퍼센트 초과                                          | \\[30031\\] Disk usage exceeds 80 percent                                 | Warn  |\n| H/W       | 30032 | 디스크 사용량 90 퍼센트 초과                                          | \\[30032\\] Disk usage exceeds 90 percent                                 | Error |\n| H/W       | 30033 | 메모리 사용량 70 퍼센트 초과                                          | \\[30033\\] Memory usage exceeds 70 percent                               | Info  |\n| H/W       | 30034 | 메모리 사용량 80 퍼센트 초과                                          | \\[30034\\] Memory usage exceeds 80 percent                               | Warn  |",
-        "preprocessed": "BMA 공정 AMR(0.3T/1T) 시스템의 H/W 알람 코드 30030은 내부 저장 장치의 디스크 사용량이 전체 용량의 70%를 초과했음을 나타내는 정보(Info) 단계의 상태이다.\n\nBMA 공정 AMR(0.3T/1T) 시스템의 H/W 알람 코드 30031은 내부 저장 장치의 디스크 사용량이 전체 용량의 80%를 초과하여 주의가 필요한 경고(Warn) 단계의 상태이다.\n\nBMA 공정 AMR(0.3T/1T) 시스템의 H/W 알람 코드 30032는 내부 저장 장치의 디스크 사용량이 전체 용량의 90%를 초과하여 즉각적인 조치가 필요한 오류(Error) 단계의 상태이다.\n\nBMA 공정 AMR(0.3T/1T) 시스템의 H/W 알람 코드 30033은 제어 PC의 메모리(RAM) 사용량이 전체 용량의 70%를 초과했음을 나타내는 정보(Info) 단계의 상태이다.\n\nBMA 공정 AMR(0.3T/1T) 시스템의 H/W 알람 코드 30034는 제어 PC의 메모리(RAM) 사용량이 전체 용량의 80%를 초과하여 주의가 필요한 경고(Warn) 단계의 상태이다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10011 | 도킹 시작 위치 오차 발생                                             | \\[10011\\] Docking start position WARN                                   | Info  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 [10011] 알람은 로봇이 도킹 시퀀스를 시작하기 위해 설정된 목표 지점과 실제 정지 위치 사이의 오차가 허용 범위를 초과할 때 발생한다. 이 알람은 도킹 정밀도를 확보하기 위한 사전 경고(Warning) 단계이며, 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우 운영자는 로봇의 현재 위치를 확인하고 HMI를 통해 도킹 시작 위치로 재이동시키거나 위치 보정 작업을 수행해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 12,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30035 | 메모리 사용량 90 퍼센트 초과                                          | \\[30035\\] Memory usage exceeds 90 percent                               | Error |\n| H/W       | 30036 | 라이다 오류 발생                                                  | \\[30036\\] LIDAR ERROR Occurred                                          | Error |\n| H/W       | 30037 | 라이다 워닝 발생                                                  | \\[30037\\] LIDAR WARN Occurred                                           | Error |\n| H/W       | 30038 | 배터리 온도 이상                                                  | \\[30038\\] BMS Battery Over Temperature                                  | Error |\n| H/W       | 30039 | 배터리 전압 이상                                                  | \\[30039\\] BMS Battery Over Voltage                                      | Error |",
-        "preprocessed": "BMA 공정 AMR의 제어 PC 메모리 점유율이 90%를 초과할 경우, 시스템은 [30035] Memory usage exceeds 90 percent 에러를 발생시킨다.\n\nBMA 공정 AMR의 주행용 라이다(LIDAR) 센서에서 하드웨어 결함이나 데이터 수신 불량이 감지되면 [30036] LIDAR ERROR Occurred 에러가 발생한다.\n\nBMA 공정 AMR의 라이다(LIDAR) 센서 렌즈 오염이나 일시적인 신호 감쇄가 발생할 경우, 시스템은 [30037] LIDAR WARN Occurred 경고를 출력한다.\n\nBMA 공정 AMR의 배터리 관리 시스템(BMS)에서 측정된 배터리 온도가 허용 임계치를 초과하면 [30038] BMS Battery Over Temperature 에러가 발생한다.\n\nBMA 공정 AMR의 배터리 관리 시스템(BMS)에서 측정된 전압이 정격 범위를 벗어나 과전압 상태가 되면 [30039] BMS Battery Over Voltage 에러가 발생한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10012 | 도킹 센서 감지 안됨 재시도 중                                          | \\[10012\\] Docking IR sensor not detected. Retrying                      | Info  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 [10012] 알람은 도킹 과정에서 IR 센서가 정상적으로 감지되지 않아 시스템이 재시도를 수행 중인 상태를 의미한다. 해당 알람은 로봇이 도킹 스테이션과의 정렬을 위해 신호를 탐색하는 과정에서 발생하며, 시스템은 설정된 횟수만큼 자동 재시도를 실행한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 로봇과 도킹 스테이션 사이의 IR 센서 오염 여부를 확인하거나 로봇의 위치를 수동으로 조정하여 정렬 상태를 점검해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 13,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30040 | 배터리 통신 에러(충전중)                                             | \\[30040\\] BMS Battery Communication Error (Charging)                    | Error |\n| H/W       | 30041 | 배터리 온도 이상(주행중)                                             | \\[30041\\] BMS Battery High Temperature (Driving)                        | Error |\n| 주행모터 드라이버 | 40000 | Over Heat                                                  | \\[40000\\] Over Heat                                                     | Warn  |\n| 주행모터 드라이버 | 40001 | Over Voltage                                               | \\[40001\\] Over Voltage                                                  | Warn  |\n| 주행모터 드라이버 | 40002 | Under Voltage - 응급버튼이 눌린 경우                                | \\[40002\\] Under Voltage                                                 | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 [30040] BMS Battery Communication Error (Charging) 에러는 충전 프로세스 중 배터리 관리 시스템(BMS)과 제어기 간의 통신이 단절되었음을 의미한다.\n\nBMA 공정 AMR의 [30041] BMS Battery High Temperature (Driving) 에러는 주행 중 배터리 팩의 내부 온도가 설정된 정상 범위를 초과하여 상승했음을 나타낸다.\n\nBMA 공정 AMR 주행모터 드라이버의 [40000] Over Heat 경고는 구동 모터 드라이버의 내부 온도가 임계치를 초과하여 과열된 상태를 의미한다.\n\nBMA 공정 AMR 주행모터 드라이버의 [40001] Over Voltage 경고는 드라이버에 입력되는 전압이 허용 범위를 초과하여 공급되고 있음을 나타낸다.\n\nBMA 공정 AMR 주행모터 드라이버의 [40002] Under Voltage 경고는 드라이버 입력 전압이 기준치 미만으로 하락했음을 의미하며, 기구의 비상정지(Emergency Stop) 버튼이 눌린 경우에도 해당 경고가 발생한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10013 | 도킹 시간 초과                                                   | \\[10013\\] Docking Timeout                                               | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 10013 알람은 로봇이 도킹 스테이션 진입 시 설정된 제한 시간 내에 도킹 완료 상태에 도달하지 못한 도킹 시간 초과(Docking Timeout) 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 현재 위치와 도킹 경로상의 장애물 유무를 확인한 후 설비 HMI를 통해 로봇을 재가동하거나 수동으로 도킹 위치를 보정해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 14,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행모터 드라이버 | 40003 | Short Circuit                                              | \\[40003\\] Short Circuit                                                 | Warn  |\n| 주행모터 드라이버 | 40004 | Emergency Stop - break 해제 상태                               | \\[40004\\] Not Ready                                                     | Warn  |\n| 주행모터 드라이버 | 40005 | Motor/Sensor ERROR                                         | \\[40005\\] Motor/Sensor Setup Fault                                      | Warn  |\n| 주행모터 드라이버 | 40006 | MOSFET failure                                             | \\[40006\\] MOSFET failure                                                | Warn  |\n| 주행모터 드라이버 | 40007 | Default configuration loaded at startup                    | \\[40007\\] Default configuration loaded at startup                       | Warn  |",
-        "preprocessed": "BMA 공정 AMR의 주행모터 드라이버에서 발생한 40003(Short Circuit) 알람은 시스템 내부의 단락 발생을 의미한다.\n\nBMA 공정 AMR의 주행모터 드라이버에서 발생한 40004(Emergency Stop - break 해제 상태) 알람은 비상 정지 상황으로 인해 브레이크가 해제되어 구동 준비가 되지 않은 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 비상 정지 버튼의 물리적 상태를 확인하고 해제하여 시스템을 정상 상태로 복구해야 한다.\n\nBMA 공정 AMR의 주행모터 드라이버에서 발생한 40005(Motor/Sensor ERROR) 알람은 모터 또는 센서의 설정값 오류 및 통신 결함을 의미한다.\n\nBMA 공정 AMR의 주행모터 드라이버에서 발생한 40006(MOSFET failure) 알람은 드라이버 내부 전력 제어 소자인 MOSFET의 소자 결함 또는 파손을 의미한다.\n\nBMA 공정 AMR의 주행모터 드라이버에서 발생한 40007(Default configuration loaded at startup) 알람은 시스템 시작 시 사용자 설정값이 아닌 공장 초기 설정값이 로드되었음을 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10014 | 도킹 중 장애물 감지로 인한 일시 정지                                      | \\[10014\\] Temporary stop due to obstruction detection during docking    | Info  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)이 도킹(Docking) 기동을 수행하는 과정에서 안전 센서에 의해 장애물이 감지되면, 시스템은 충돌 방지를 위해 주행을 일시 정지한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 15,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70000 | \\[WIA1000 PLC\\] 작업 시작 시간 초과 알람                             | \\[70000\\] \\[WIA1000 PLC\\] WORK START TIME OVER ALARM                    | Info  |\n| PLC       | 70001 | \\[WIA1000 PLC\\] T2 시간 초과 알람                                | \\[70001\\] \\[WIA1000 PLC\\] T2 TIME OVER ALARM                            | Info  |\n| PLC       | 70002 | \\[WIA1000 PLC\\] T5\\&T6 시간 초과 알람                            | \\[70002\\] \\[WIA1000 PLC\\] T5 \\&T6 TIME OVER ALARM                       | Info  |\n| PLC       | 70008 | \\[PLC\\] U\\_REQ/L\\_REQ 꺼짐 알람                                | \\[70008\\] \\[PLC\\] U\\_REQ/L\\_REQ OFF ALARM                               | Error |\n| PLC       | 70009 | \\[PLC\\] READY 꺼짐 알람                                        | \\[70009\\] \\[PLC\\] READY OFF ALARM                                       | Error |",
-        "preprocessed": "BMA 공정의 WIA1000 PLC 시스템에서 70000 알람이 발생한 경우, 이는 설정된 작업 시작 시간(Work Start Time)을 초과했음을 의미한다.\n\nBMA 공정의 WIA1000 PLC 시스템에서 70001 알람이 발생한 경우, 이는 설비 간 인터록 과정 중 T2 시간 초과(Time Over)가 발생했음을 의미한다.\n\nBMA 공정의 WIA1000 PLC 시스템에서 70002 알람이 발생한 경우, 이는 설비 동작 시퀀스 중 T5 및 T6 시간 초과(Time Over)가 발생했음을 의미한다.\n\nBMA 공정 AMR 제어 PLC에서 70008 에러가 발생한 경우, 이는 상위 시스템과의 통신 중 언로딩 요청(U_REQ) 또는 로딩 요청(L_REQ) 신호가 비정상적으로 차단(OFF)되었음을 의미한다.\n\nBMA 공정 AMR 제어 PLC에서 70009 에러가 발생한 경우, 이는 설비의 가동 준비 완료(READY) 신호가 비정상적으로 차단(OFF)되었음을 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10015 | 도킹 센서 감지 안됨으로 인한 최종 실패                                     | \\[10015\\] Docking Fail because IR sensor not detected.                  | Error |",
+        "preprocessed": "BMA 공정 AMR의 10015 에러는 도킹 과정에서 IR 센서가 정상적으로 감지되지 않아 최종 도킹에 실패한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 위치와 IR 센서의 오염 상태를 점검한 후 HMI를 통해 도킹 명령을 재전송해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 16,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70010 | \\[PLC\\] 작업 시작 시간 초과 알람                                   | \\[70010\\] \\[PLC\\] WORK START TIME OVER ALARM                            | Error |\n| PLC       | 70011 | \\[PLC\\] T2 (물건 받기 전 PLC 내부 동작 불가) 시간 초과 알람            | \\[70011\\] \\[PLC\\] T2 TIME OVER ALARM                                    | Error |\n| PLC       | 70012 | \\[PLC\\] T4 (물건 받는 중 물건 끼임, 센서 중복 감지) 시간 초과 알람       | \\[70012\\] \\[PLC\\] T4 TIME OVER ALARM                                    | Error |\n| PLC       | 70013 | \\[PLC\\] EMG 알람(PIO)                                        | \\[70013\\] \\[PLC\\] EMG ALARM(PIO)                                        | Error |\n| PLC       | 70016 | \\[WIA300 PLC\\] 롤러 알람                                       | \\[70016\\] \\[WIA300 PLC\\] ROLLER ALARM                                   | Error |",
-        "preprocessed": "BMA 공정 AMR 시스템의 PLC 에러 코드 70010은 작업 시작 명령 수신 후 정해진 시간 내에 실제 작업이 개시되지 않았을 때 발생하는 '작업 시작 시간 초과 알람'을 의미한다.\n\nBMA 공정 AMR 시스템의 PLC 에러 코드 70011은 물건을 수령하기 전 단계에서 PLC 내부 시퀀스 동작이 정상적으로 수행되지 못해 설정된 대기 시간을 초과한 'T2 시간 초과 알람'이다.\n\nBMA 공정 AMR 시스템의 PLC 에러 코드 70012는 물건을 수령하는 과정에서 물체 끼임 현상이 발생하거나 센서가 중복으로 감지되어 공정이 지연될 때 발생하는 'T4 시간 초과 알람'이다.\n\nBMA 공정 AMR 시스템의 PLC 에러 코드 70013은 PIO(Parallel Input/Output) 통신 중 비상 정지 신호가 입력되었을 때 발생하는 'EMG 알람'을 의미한다.\n\nBMA 공정 WIA300 AMR 모델의 PLC 에러 코드 70016은 컨베이어 롤러 구동부의 이상이나 제어 불능 상태를 나타내는 '롤러 알람'이다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10016 | 충전 도킹 실패 재시도 중                                             | \\[10016\\] Docking CHARGE sensor not detected. Retrying                  | Warn  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)이 충전 스테이션에 진입하였으나 충전 도킹 센서(Docking CHARGE sensor)가 감지되지 않아 시스템이 자동으로 재시도를 수행 중인 상태이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 정지 위치와 충전 패드의 정렬 상태를 확인하고 이물질 제거 등 물리적 조치를 취해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 17,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70017 | \\[WIA300 PLC\\] 도어 알람                                       | \\[70017\\] \\[WIA300 PLC\\] DOOR ALARM                                     | Error |\n| PLC       | 70018 | \\[WIA300 PLC\\] ACS 명령-센서 불일치 알람                            | \\[70018\\] \\[WIA300 PLC\\] ACS COMMAND-SENSOR MISSMATCH ALARM             | Error |\n| 주행 (나비프라) | 80000 | ERROR\\_DRIVER\\_NOT\\_START                                  | \\[80000\\] DRIVER\\_NOT\\_START                                            | Error |\n| 주행 (나비프라) | 80001 | ERROR\\_LOCALIZATION\\_NOT\\_START                            | \\[80001\\] LOCALIZATION\\_NOT\\_START                                      | Error |\n| 주행 (나비프라) | 80002 | ERROR\\_NOT\\_ON\\_PATH                                       | \\[80002\\] NOT\\_ON\\_PATH                                                 | Error |",
-        "preprocessed": "BMA 공정의 WIA300 PLC 시스템에서 70017 에러 코드가 발생한 경우, 이는 AMR의 도어(Door) 상태에 이상이 감지된 도어 알람 상태를 의미한다.\n\nBMA 공정의 WIA300 PLC 시스템에서 70018 에러 코드가 발생한 경우, 이는 통합 관제 시스템(ACS)의 제어 명령과 AMR의 실제 센서 감지 데이터가 일치하지 않는 센서 불일치 오류를 의미한다.\n\nBMA 공정 AMR의 나비프라(Navifra) 주행 제어 시스템에서 80000 에러 코드가 발생한 경우, 이는 주행 드라이버가 정상적으로 시작되지 않은 상태를 의미한다.\n\nBMA 공정 AMR의 나비프라(Navifra) 주행 제어 시스템에서 80001 에러 코드가 발생한 경우, 이는 로봇의 현재 위치를 파악하는 로컬라이제이션(Localization) 기능이 활성화되지 않은 상태를 의미한다.\n\nBMA 공정 AMR의 나비프라(Navifra) 주행 제어 시스템에서 80002 에러 코드가 발생한 경우, 이는 AMR이 설정된 주행 경로를 이탈하여 경로 위에 존재하지 않는 상태를 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10017 | \\[PLC\\] 에러 리셋                                              | \\[10017\\] PLC is reset, but Job has not been canceled                   | Error |",
+        "preprocessed": "BMA 공정 AMR의 10017 에러는 PLC 시스템 리셋이 수행되었으나 할당된 작업(Job)이 정상적으로 취소되지 않은 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 상위 제어 시스템 또는 AMR HMI를 통해 잔류 작업을 강제로 종료하고 상태를 초기화해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 18,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80003 | ERROR\\_CONFIDENCE\\_LOW                                     | \\[80003\\] CONFIDENCE\\_LOW                                               | Error |\n| 주행 (나비프라) | 80004 | ERROR\\_MAP\\_NOT\\_LOADED                                    | \\[80004\\] MAP\\_NOT\\_LOADED                                              | Error |\n| 주행 (나비프라) | 80005 | ERROR\\_PAUSED\\_BY\\_OBSTACLE                                | \\[80005\\] PAUSED\\_BY\\_OBSTACLE                                          | Info  |\n| 주행 (나비프라) | 80006 | ERROR\\_MOTOR\\_NOTCONNECTED                                 | \\[80006\\] MOTOR\\_NOTCONNECTED                                           | Error |\n| 주행 (나비프라) | 80007 | ERROR\\_FRONT\\_LIDAR\\_SIGNAL\\_TIMEOUT                       | \\[80007\\] FRONT\\_LIDAR\\_SIGNAL\\_TIMEOUT                                 | Error |",
-        "preprocessed": "BMA 공정 AMR의 나비프라(Navifra) 주행 제어 시스템에서 발생하는 80003(ERROR_CONFIDENCE_LOW) 에러는 로봇의 현재 위치 추정 신뢰도가 설정된 기준치보다 낮아 자기 위치 파악이 불가능한 상태를 의미한다.\n\nBMA 공정 AMR의 나비프라 주행 제어 시스템에서 발생하는 80004(ERROR_MAP_NOT_LOADED) 에러는 주행에 필요한 맵 데이터가 제어기에 정상적으로 로드되지 않았음을 나타낸다.\n\nBMA 공정 AMR의 나비프라 주행 제어 시스템에서 발생하는 80005(ERROR_PAUSED_BY_OBSTACLE) 정보는 로봇의 주행 경로상에 장애물이 감지되어 안전을 위해 일시 정지했음을 의미한다.\n\nBMA 공정 AMR의 나비프라 주행 제어 시스템에서 발생하는 80006(ERROR_MOTOR_NOTCONNECTED) 에러는 주행 구동 모터와 제어기 간의 통신 연결이 단절되었거나 물리적인 연결 오류가 발생한 상태이다.\n\nBMA 공정 AMR의 나비프라 주행 제어 시스템에서 발생하는 80007(ERROR_FRONT_LIDAR_SIGNAL_TIMEOUT) 에러는 전방 라이다(LiDAR) 센서로부터 수신되는 데이터 신호가 지정된 시간 내에 도달하지 않는 통신 타임아웃 상태를 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 테스크       | 10018 | 충전 타임아웃                                                    | Charge Timeout                                                          | Info  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 10018 에러는 배터리 충전 과정에서 설정된 제한 시간 내에 목표 전압에 도달하지 못한 충전 타임아웃(Charge Timeout) 상태를 의미한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 19,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80008 | ERROR\\_FRONT\\_LIDAR\\_CLEAN                                 | \\[80008\\] FRONT\\_LIDAR\\_CLEAN                                           | Error |\n| 주행 (나비프라) | 80009 | ERROR\\_REAR\\_LIDAR\\_SIGNAL\\_TIMEOUT                        | \\[80009\\] REAR\\_LIDAR\\_SIGNAL\\_TIMEOUT                                  | Error |\n| 주행 (나비프라) | 80010 | ERROR\\_REAR\\_LIDAR\\_CLEAN                                  | \\[80010\\] REAR\\_LIDAR\\_CLEAN                                            | Error |\n| 주행 (나비프라) | 80011 | LOCALIZATION\\_LARGE\\_CORRECTION                            | \\[80011\\] LOCALIZATION\\_LARGE\\_CORRECTION                               | Error |\n| 주행 (나비프라) | 80012 | ERROR\\_NAVICORE\\_NOTCONNECTED                              | \\[80012\\] NAVICORE\\_NOTCONNECTED                                        | Error |",
-        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 80008(ERROR_FRONT_LIDAR_CLEAN) 에러는 전방 라이다(LiDAR) 센서 표면의 오염으로 인해 정상적인 스캔이 불가능한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 전방 라이다 센서의 윈도우를 세정하여 이물질을 제거해야 한다.\n\nBMA 공정 AMR(나비프라 주행 시스템)의 80009(ERROR_REAR_LIDAR_SIGNAL_TIMEOUT) 에러는 후방 라이다(LiDAR) 센서와 제어기 간의 통신 신호가 지정된 시간 내에 수신되지 않는 통신 지연 상태를 나타낸다.\n\nBMA 공정 AMR(나비프라 주행 시스템)의 80010(ERROR_REAR_LIDAR_CLEAN) 에러는 후방 라이다(LiDAR) 센서 렌즈에 먼지나 이물질이 부착되어 데이터 신뢰도가 저하된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 후방 라이다 센서의 표면을 청결하게 닦아내야 한다.\n\nBMA 공정 AMR(나비프라 주행 시스템)의 80011(LOCALIZATION_LARGE_CORRECTION) 에러는 로봇이 인식하는 현재 위치와 실제 지도 데이터 간의 오차가 허용 범위를 초과하여 위치 보정값이 과도하게 발생한 상태이다.\n\nBMA 공정 AMR(나비프라 주행 시스템)의 80012(ERROR_NAVICORE_NOTCONNECTED) 에러는 주행 제어 소프트웨어인 나비코어(Navicore)와 하드웨어 시스템 간의 연결이 단절되어 주행 명령을 수행할 수 없는 상태를 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20000 | 경로 재생성                                                     | \\[20000\\] Try to create path again                                      | Info  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T) 주행 시스템에서 발생하는 20000번 알람은 현재 설정된 경로로 주행이 불가능할 때 시스템이 경로 재생성을 시도하고 있음을 의미한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 20,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80013 | ERROR\\_PAUSE\\_BY\\_OBSTACLE\\_TIMEOUT                        | \\[80013\\] PAUSE\\_BY\\_OBSTACLE\\_TIMEOUT                                  | Error |\n| 주행 (나비프라) | 80014 | ERROR\\_ENCODER\\_NOT\\_UPDATE                                | \\[80014\\] ENCODER\\_NOT\\_UPDATE                                          | Info  |\n| 주행 (나비프라) | 80015 | ERROR\\_DOCKING\\_HEADING\\_CTR\\_EXCEEDED                     | \\[80015\\] DOCKING\\_HEADING\\_CTR\\_EXCEEDED                               | Error |\n| 주행 (나비프라) | 80016 | ERROR\\_FRONT\\_CAMERA\\_TIMEOUT                              | \\[80016\\] FRONT\\_CAMERA\\_TIMEOUT                                        | Error |\n| 주행 (나비프라) | 80017 | ERROR\\_REAR\\_CAMERA\\_TIMEOUT                               | \\[80017\\] REAR\\_CAMERA\\_TIMEOUT                                         | Error |",
-        "preprocessed": "BMA 공정 AMR의 나비프라 주행 제어 시스템에서 발생하는 80013(ERROR_PAUSE_BY_OBSTACLE_TIMEOUT) 에러는 장애물 감지로 인한 일시 정지 상태가 설정된 제한 시간을 초과했음을 의미한다.\n\nBMA 공정 AMR의 나비프라 주행 제어 시스템에서 발생하는 80014(ERROR_ENCODER_NOT_UPDATE) 정보는 주행 모터의 엔코더 데이터가 실시간으로 업데이트되지 않는 상태를 나타낸다.\n\nBMA 공정 AMR의 나비프라 주행 제어 시스템에서 발생하는 80015(ERROR_DOCKING_HEADING_CTR_EXCEEDED) 에러는 도킹 과정 중 기체의 헤딩(Heading) 보정 횟수가 허용 범위를 초과하여 정밀 진입에 실패했음을 의미한다.\n\nBMA 공정 AMR의 나비프라 주행 제어 시스템에서 발생하는 80016(ERROR_FRONT_CAMERA_TIMEOUT) 에러는 전방 카메라 모듈과의 통신 응답 시간이 초과되어 정상적인 영상 데이터를 수신할 수 없는 상태를 나타낸다.\n\nBMA 공정 AMR의 나비프라 주행 제어 시스템에서 발생하는 80017(ERROR_REAR_CAMERA_TIMEOUT) 에러는 후방 카메라 모듈과의 통신 응답 시간이 초과되어 정상적인 영상 데이터를 수신할 수 없는 상태를 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20001 | 경로 생성 불가                                                   | \\[20001\\] Unable to create path                                         | Warn  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T) 주행 시스템에서 발생하는 20001 경고(Warn)는 현재 위치에서 목적지까지의 유효한 주행 경로를 생성할 수 없는 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 현재 위치가 지도상의 주행 가능 영역(Node/Link)을 벗어났는지 확인하고, 조이스틱을 사용하여 로봇을 경로 생성 가능한 위치로 이동시킨 후 주행 명령을 재전송해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 21,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80018 | ERROR\\_DOCK\\_NOT\\_FIND                                     | \\[80018\\] DOCK\\_NOT\\_FIND                                               | Error |\n| 주행 (나비프라) | 80019 | ERROR\\_LICENSE\\_IS\\_NOT\\_CHECKED                           | \\[80019\\] LICENSE\\_IS\\_NOT\\_CHECKED                                     | Error |\n| 주행 (나비프라) | 80020 | ERROR\\_PATH\\_OUT                                           | \\[80020\\] PATH\\_OUT                                                     | Error |\n| 주행 (나비프라) | 80021 | ERROR\\_UNDEFINED                                           | \\[80021\\] UNDEFINED                                                     | Error |\n| 주행 (나비프라) | 80022 | ERROR\\_PATH\\_NOT\\_CREATED                                  | \\[80022\\] PATH\\_NOT\\_CREATED                                            | Error |",
-        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)에서 80018(ERROR_DOCK_NOT_FIND) 에러는 로봇이 도킹을 위한 마커나 위치를 인식하지 못했을 때 발생한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 AMR의 현재 위치와 도킹 타겟의 가시성을 확인한 후 수동 주행으로 위치를 보정해야 한다.\n\nBMA 공정 AMR(나비프라 주행 시스템)에서 80019(ERROR_LICENSE_IS_NOT_CHECKED) 에러는 주행 제어 소프트웨어의 라이선스 인증이 완료되지 않았거나 유효하지 않음을 의미한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 제어 PC의 네트워크 연결 상태와 라이선스 키 등록 여부를 재점검해야 한다.\n\nBMA 공정 AMR(나비프라 주행 시스템)에서 80020(ERROR_PATH_OUT) 에러는 로봇이 설정된 주행 경로를 일정 범위를 벗어나 이탈했을 때 발생한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 경로 상의 장애물을 제거하고 AMR을 경로 내부로 재배치한 후 주행을 재개해야 한다.\n\nBMA 공정 AMR(나비프라 주행 시스템)에서 80021(ERROR_UNDEFINED) 에러는 시스템 정의에 포함되지 않은 예외적인 오류가 발생했음을 나타낸다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 시스템 로그를 분석하고 메인 컨트롤러를 재부팅하여 상태를 초기화해야 한다.\n\nBMA 공정 AMR(나비프라 주행 시스템)에서 80022(ERROR_PATH_NOT_CREATED) 에러는 목적지까지의 주행 경로 생성이 불가능한 환경일 때 발생한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 맵 데이터의 정합성을 확인하고 목적지 설정값이 유효한지 점검해야 한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20002 | 일시적 주행 제한                                                  | \\[20002\\] Temporary driving restriction(Not used)                       | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 주행 제어 시스템에서 발생하는 20002 경고(Warn)는 기구적 또는 소프트웨어적 요인에 의해 일시적으로 주행이 제한된 상태를 의미하며, 현재 시스템상에서는 사용되지 않는(Not used) 예비 코드로 분류되어 있다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 22,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80023 | ERROR\\_DOCKING\\_POS\\_EXCEED                                | \\[80023\\] DOCKING\\_POS\\_EXCEED                                          | Error |\n| 주행 (나비프라) | 80024 | ERROR\\_DOCKING\\_TIMEOUT                                    | \\[80024\\] DOCKING\\_TIMEOUT                                              | Error |\n| 주행 (나비프라) | 80025 | ERROR\\_PAUSE\\_BY\\_LIDAR\\_OBSTACLE                          | \\[80025\\] PAUSE\\_BY\\_LIDAR\\_OBSTACLE                                    | Info  |\n| 주행 (나비프라) | 80026 | ERROR\\_PAUSE\\_BY\\_CAMERA\\_OBSTACLE                         | \\[80026\\] PAUSE\\_BY\\_CAMERA\\_OBSTACLE                                   | Info  |\n| 주행 (나비프라) | 80027 | ERROR\\_PAUSE\\_BY\\_ANOTHER\\_ROBOT\\_OBSTACLE                 | \\[80027\\] PAUSE\\_BY\\_ANOTHER\\_ROBOT\\_OBSTACLE                           | Info  |",
-        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)에서 80023(ERROR_DOCKING_POS_EXCEED) 에러는 로봇이 도킹 목표 위치의 허용 오차 범위를 초과하여 정지했음을 의미한다.\n\nBMA 공정 AMR(나비프라 주행 시스템)에서 80024(ERROR_DOCKING_TIMEOUT) 에러는 설정된 제한 시간 내에 도킹 동작을 완료하지 못했을 때 발생한다.\n\nBMA 공정 AMR(나비프라 주행 시스템)의 80025(ERROR_PAUSE_BY_LIDAR_OBSTACLE) 상태는 라이다(LiDAR) 센서가 주행 경로상의 장애물을 감지하여 일시 정지했음을 나타내는 정보성 메시지이다.\n\nBMA 공정 AMR(나비프라 주행 시스템)의 80026(ERROR_PAUSE_BY_CAMERA_OBSTACLE) 상태는 비전 카메라 센서가 장애물을 감지하여 주행을 일시 정지했음을 나타내는 정보성 메시지이다.\n\nBMA 공정 AMR(나비프라 주행 시스템)의 80027(ERROR_PAUSE_BY_ANOTHER_ROBOT_OBSTACLE) 상태는 경로상에 위치한 다른 로봇을 장애물로 인식하여 충돌 방지를 위해 일시 정지했음을 나타내는 정보성 메시지이다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20003 | 구동부 슬립 감지                                                  | \\[20003\\] Wheel slip detected                                           | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 주행 제어 시스템이 구동 바퀴의 회전수와 실제 이동 거리의 불일치를 식별하면 20003(구동부 슬립 감지) 경고가 발생한다. 이 현상은 바닥 면의 이물질이나 급가감속으로 인해 구동륜이 헛도는 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 해당 AMR의 구동부 주위 이물질을 제거하고 HMI 상에서 알람을 해제한 뒤 주행 상태를 재점검해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 23,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80028 | ERROR\\_MOTOR\\_DRIVER\\_RESPONSE\\_TIMEOUT                    | \\[80028\\] MOTOR\\_DRIVER\\_RESPONSE\\_TIMEOUT                              | Info  |\n| 주행 (나비프라) | 80029 | ERROR\\_PAUSED\\_BY\\_DOCK\\_OUT\\_T\\_ZONE\\_OBSTACLE            | \\[80029\\] PAUSED\\_BY\\_DOCK\\_OUT\\_T\\_ZONE\\_OBSTACLE                      | Info  |\n| ACS 감지    | 3     | POWER\\_OFF                                                 | POWER\\_OFF                                                              | Error |\n| ACS 감지    | 6     | ROBOT\\_MANUAL\\_OPERATION\\_STATUS                           | ROBOT\\_MANUAL\\_OPERATION\\_STATUS                                        | Error |\n| ACS 감지    | 11    | ACS\\_ERROR\\_WHILE\\_NAVIGATING\\_THE\\_ROUTE                  | ACS\\_ERROR\\_WHILE\\_NAVIGATING\\_THE\\_ROUTE                               | Warn  |",
-        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)에서 발생하는 80028 에러는 모터 드라이버의 응답 시간 초과(MOTOR_DRIVER_RESPONSE_TIMEOUT)를 의미한다.\n\nBMA 공정 AMR(나비프라 주행 시스템)의 80029 에러는 도킹 해제(Dock-out) 중 T-Zone 내 장애물이 감지되어 주행이 일시 정지된 상태(PAUSED_BY_DOCK_OUT_T_ZONE_OBSTACLE)를 나타낸다.\n\nBMA 공정 AMR의 ACS(Autonomous Control System) 감지 코드 3번은 로봇의 전원이 차단된 상태(POWER_OFF)를 의미한다.\n\nBMA 공정 AMR의 ACS 감지 코드 6번은 로봇이 자동 주행 모드가 아닌 수동 조작 상태(ROBOT_MANUAL_OPERATION_STATUS)임을 나타낸다.\n\nBMA 공정 AMR의 ACS 감지 코드 11번은 로봇이 설정된 경로를 주행하는 과정에서 ACS 제어 오류(ACS_ERROR_WHILE_NAVIGATING_THE_ROUTE)가 발생했음을 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20004 | 경로 상 장애물 감지로 대기중                                           | \\[20004\\] Stand by to drive due to obstacle detection on the path       | Info  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)이 주행 경로 상에서 장애물을 감지하면 안전을 위해 즉시 대기 상태로 전환된다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 24,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 12    | ERROR\\_OCCURRED\\_WHILE\\_SENDING\\_JOB\\_COMMAND              | ERROR\\_OCCURRED\\_WHILE\\_SENDING\\_JOB\\_COMMAND                           | Warn  |\n| ACS 감지    | 30    | WORK\\_DELAY                                                | WORK\\_DELAY                                                             | Warn  |\n| ACS 감지    | 45    | MAP\\_VERSION\\_IS\\_DIFFERENT                                | MAP\\_VERSION\\_IS\\_DIFFERENT                                             | Warn  |\n| ACS 감지    | 46    | COMMUNICATION\\_ERROR                                       | COMMUNICATION\\_ERROR                                                    | Warn  |\n| ACS 감지    | 51    | INOPERATIVE\\_AFTER\\_COMPLETION\\_OF\\_SENDING\\_TASK\\_COMMAND | INOPERATIVE\\_AFTER\\_COMPLETION\\_OF\\_SENDING\\_TASK\\_COMMAND              | Warn  |",
-        "preprocessed": "BMA 공정 ACS(AMR Control System)에서 발생하는 'ERROR_OCCURRED_WHILE_SENDING_JOB_COMMAND(코드 12)' 알람은 상위 시스템이 AMR로 작업 명령을 전송하는 과정에서 통신 오류나 데이터 무결성 문제로 인해 명령 전달이 실패했음을 의미한다.\n\nBMA 공정 ACS에서 발생하는 'WORK_DELAY(코드 30)' 알람은 할당된 작업의 수행 시간이 설정된 임계치를 초과하여 공정 지연이 발생하고 있는 상태를 나타낸다.\n\nBMA 공정 ACS에서 발생하는 'MAP_VERSION_IS_DIFFERENT(코드 45)' 알람은 제어 서버에 등록된 지도 데이터와 AMR 기체에 저장된 지도 데이터의 버전이 일치하지 않아 주행 안전성을 보장할 수 없는 상태를 의미한다.\n\nBMA 공정 ACS에서 발생하는 'COMMUNICATION_ERROR(코드 46)' 알람은 ACS 서버와 AMR 기체 간의 무선 네트워크 연결이 불안정하거나 끊겨 실시간 상태 모니터링 및 제어가 불가능한 상태를 나타낸다.\n\nBMA 공정 ACS에서 발생하는 'INOPERATIVE_AFTER_COMPLETION_OF_SENDING_TASK_COMMAND(코드 51)' 알람은 AMR이 작업 명령을 정상적으로 수신했음에도 불구하고, 기구적 결함이나 구동부 인터락으로 인해 실제 주행이나 동작을 시작하지 못하는 상태를 의미한다.\n\n**시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 ACS 관제 화면에서 해당 AMR의 통신 상태와 맵 버전을 확인하고, 필요 시 [Reset] 버튼을 누르거나 수동 조작 모드로 전환하여 기체의 상태를 초기화해야 한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20005 | 주행 시스템 에러                                                  | \\[20005\\] Driving system WARN                                           | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 주행 시스템에서 20005 에러가 발생한 상태는 구동부 제어 장치 또는 통신 모듈의 이상으로 인해 정상적인 주행이 불가능한 경고 상황을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 제어 패널의 비상 정지 스위치를 해제하고 HMI 화면에서 주행 시스템 알람 리셋을 실행하여 구동 모듈의 상태를 초기화해야 한다.",
         "source": "acs_alarm.md"
     },
     {
         "id": 25,
-        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 100   | HARD\\_DISK\\_CAPACITY\\_EXCEEDED                             | HARD\\_DISK\\_CAPACITY\\_EXCEEDED                                          | Error |\n| ACS 감지    | 700   | AMR\\_COLLISION\\_RISK\\_WARNING                              | AMR\\_COLLISION\\_RISK\\_WARNING                                           | Warn  |\n| ACS 감지    | 701   | WATING\\_FOR\\_MISSION\\_START\\_COLLISION\\_AVOIDANCE\\_DECTION | WATING\\_FOR\\_MISSION\\_START\\_COLLISION\\_AVOIDANCE\\_DECTION              | Info  |",
-        "preprocessed": "BMA 공정 ACS(Autonomous Control System)에서 감지된 100번 에러(HARD_DISK_CAPACITY_EXCEEDED)는 제어 PC의 하드디스크 저장 용량이 임계치를 초과하여 시스템 데이터 기록이 불가능한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 로그 파일 삭제 또는 디스크 정리 작업을 통해 저장 공간을 확보해야 한다.\n\nBMA 공정 ACS에서 감지된 700번 경고(AMR_COLLISION_RISK_WARNING)는 주행 중인 AMR의 경로상에 장애물이 감지되어 충돌 위험이 발생했음을 나타낸다.\n\nBMA 공정 ACS에서 감지된 701번 정보(WATING_FOR_MISSION_START_COLLISION_AVOIDANCE_DECTION)는 미션 시작 전 충돌 방지 센서가 물체를 감지하여 AMR이 안전 거리 확보를 위해 대기 중인 상태를 의미한다.",
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20006 | 주행 중 emergency 혹은 범퍼센서 감지                                  | \\[20006\\] EMG or Bumper sensor detection while driving(Not used)        | Warn  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)이 주행 중 비상 정지(Emergency) 스위치 작동 또는 범퍼 센서(Bumper Sensor)의 물리적 접촉을 감지한 상태이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 기구적 간섭 요인을 제거하고 비상 정지 버튼의 잠금을 해제한 후 시스템을 재가동해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 26,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20007 | 주행 중 Cost 처리 지연 중...                                       | \\[20007\\] Cost handling is delayed while driving                        | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 주행 제어 시스템에서 발생하는 20007 경고(Warn)는 로봇이 주행 경로를 생성하거나 장애물을 회피하기 위한 연산 과정 중 Cost(경로 비용) 처리 데이터의 연산 속도가 지연되고 있음을 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 27,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20008 | 주행 중 턴테이블 틀어짐                                              | \\[20008\\] Turntable twisted while driving                               | Warn  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)이 주행하는 과정에서 상부 턴테이블의 정렬 상태가 허용 범위를 벗어나 회전축이 틀어지는 현상이 발생한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 28,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (독자)   | 20009 | 턴테이블 리커버리 실패                                               | \\[20009\\] Turntable recovery failed                                     | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 턴테이블 리커버리 실패(20009) 알람은 주행 중 턴테이블의 위치 복구 프로세스가 정상적으로 완료되지 않았음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 제어 패널 또는 HMI를 통해 턴테이블의 현재 상태를 확인하고 수동으로 원점 복귀 명령을 수행하여 장치를 정상화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 29,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 카메라       | 20010 | 주행 중 장애물 감지용 3d 카메라 연결 실패                                  | \\[20010\\] Unable to activate cameras while driving                      | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 주행 중 장애물 감지용 3D 카메라와 제어 시스템 간의 통신 연결이 실패한 상태이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 카메라 케이블의 물리적 체결 상태를 점검하고 AMR 제어반 내의 통신 모듈 전원을 재기동해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 30,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행        | 20011 | 주행 중 후쿠요 센서 감지로 인한 감속                                      | \\[20011\\] Deceleration due to Fukuyo sensor detects                     | Info  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)이 주행 중 전방의 장애물이나 인물을 후쿠요(Hokuyo) 안전 센서로 감지할 경우, 충돌 방지를 위해 주행 속도를 즉시 감속한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 31,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행        | 20012 | 주행 중 후쿠요 센서 감지로 인한 정지                                      | \\[20012\\] Entirely stop due to Fukuyo sensor detects                    | Info  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)이 주행 중 전방의 장애물이나 물체를 후쿠요(Hokuyo) 장애물 감지 센서로 인식하면 안전을 위해 즉시 정지한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 32,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행        | 20013 | 주행 중 사전 허가 미획득으로 인한 일시 정지                                  | \\[20013\\] Pause by pass approval while driving                          | Warn  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)이 주행 중 특정 구간 진입을 위한 사전 통행 허가(Pass Approval)를 획득하지 못한 경우, 시스템은 안전을 위해 기기를 일시 정지 상태로 전환한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 33,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행        | 20014 | 정의되지 않은 후쿠요 센서 데이터 수신으로 인한 일시 정지                           | \\[20014\\] Pause by undefinded Hokuyo sensor data                        | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 주행 제어 시스템이 Hokuyo 레이저 스캐너로부터 정의되지 않은 비정상 데이터를 수신할 경우, 안전을 위해 주행 중인 AMR이 일시 정지 상태로 전환된다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 Hokuyo 센서의 렌즈 오염 상태나 통신 케이블의 연결 상태를 점검한 후 시스템을 재가동해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 34,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30000 | Unicon 보드와의 통신 연결이 끊어짐                                     | \\[30000\\] Lost communication connection with Unicorn board              | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 제어 시스템 내 Unicon 보드와 상위 제어기 간의 통신 연결이 해제된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 제어반 내부의 통신 케이블 연결 상태를 점검하고 Unicon 보드의 전원을 재기동하여 통신 상태를 정상화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 35,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30001 | 배터리 부족 (20% 이하)                                            | \\[30001\\] Battery Low (20% or less)                                     | Info  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 배터리 잔량이 20% 이하로 저하되면 [30001] Battery Low 알람이 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 해당 AMR을 수동 주행 모드로 전환하여 지정된 충전 스테이션으로 이동시킨 후 충전 절차를 수행해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 36,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30002 | EMG 버튼                                                     | \\[30002\\] EMG Button pressed                                            | Info  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 [30002] EMG Button pressed 알람은 기기에 장착된 비상 정지 버튼이 물리적으로 눌려 하드웨어 인터록이 활성화된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 기기의 비상 정지 버튼을 시계 방향으로 돌려 해제한 후 제어반의 리셋 버튼을 눌러 시스템을 정상 상태로 복구해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 37,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30003 | BMS로부터 배터리 상태 받지 못함                                        | \\[30003\\] Battery status not received from BMS                          | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 제어 시스템이 BMS(Battery Management System)로부터 실시간 배터리 상태 데이터를 수신하지 못하는 상태이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 AMR 제어반 내 통신 케이블의 체결 상태를 점검하고 HMI의 통신 진단 화면을 통해 BMS와의 연결 상태를 재설정해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 38,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30004 | wrong motor direction                                      | \\[30004\\] Wrong motor direction                                         | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 구동 모터 배선 또는 파라미터 설정 오류로 인해 [30004] Wrong motor direction 알람이 발생한 경우, 제어 시스템이 요구하는 회전 방향과 실제 모터의 회전 방향이 일치하지 않는 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 모터 드라이버의 상(Phase) 배열 상태를 점검하거나 엔코더 설정값을 확인하여 모터의 회전 방향을 정방향으로 수정해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 39,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30005 | Unicon crc 오류                                              | \\[30005\\] Unicon crc WARN                                               | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 Unicon 통신 제어기에서 발생하는 30005 에러는 데이터 전송 과정 중 CRC(Cyclic Redundancy Check) 체크섬 불일치로 인한 통신 오류를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 제어반 내 통신 케이블의 결착 상태를 점검하고 Unicon 모듈의 전원을 재기동하여 통신 데이터를 초기화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 40,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30006 | 모터드라이브 리셋 조치됨                                              | \\[30006\\] Motor drive reset                                             | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 30006 경고 코드는 모터 드라이브의 내부 오류가 감지되어 시스템이 리셋 조치를 완료했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 제어반 내부의 모터 드라이브 상태를 점검하고 HMI를 통해 구동부의 정상 작동 여부를 최종 확인해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 41,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30007 | BMS 연결 중                                                   | \\[30007\\] Connecting with BMS                                           | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 [30007] 알람은 시스템이 상위 제어기인 BMS(Battery Management System)와 통신 연결을 시도 중인 상태를 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 42,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30008 | Unicon 연결 시도중                                              | \\[30008\\] Attempting to connect with Unicon                             | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 제어 시스템이 상위 관제 시스템인 Unicon과의 통신 연결을 시도 중인 상태를 의미한다. 이 경고는 네트워크 환경 불안정이나 서버 응답 지연으로 인해 발생하며, **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 네트워크 설정 상태와 Unicon 서버의 가동 여부를 점검해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 43,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30009 | 1번 라이다 연결되지 않음                                             | \\[30009\\] LiDAR1 not connected                                          | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 1번 라이다(LiDAR) 통신 연결이 해제된 상태이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 라이다 센서의 전원 케이블 및 통신 케이블의 체결 상태를 점검하고 하드웨어 연결을 재시도해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 44,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30010 | 2번 라이다 연결되지 않음                                             | \\[30010\\] LiDAR2 not connected                                          | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 2번 라이다(LiDAR) 센서와 제어기 간의 통신 연결이 단절된 상태이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 라이다 센서의 전원 케이블 및 통신 커넥터의 체결 상태를 점검하고 하드웨어 리셋을 수행해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 45,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30011 | 1번 카메라 연결되지 않음                                             | \\[30011\\] Camera1 not connected                                         | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 1번 카메라와 제어 PC 간의 통신 연결이 끊어지거나 하드웨어 인식이 불가한 경우 30011 경고(Warn)가 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 카메라 케이블의 체결 상태를 점검하고 제어부의 전원을 재기동하여 장치 인식을 재시도해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 46,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30012 | 2번 카메라 연결되지 않음                                             | \\[30012\\] Camera2 not connected                                         | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 30012 에러는 시스템 내 2번 카메라의 통신 연결이 단절되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 카메라 케이블의 체결 상태를 점검하고 제어반 내 통신 모듈의 전원을 재기동하여 연결 상태를 복구해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 47,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30013 | PLC 연결 안됨                                                  | \\[30013\\] PLC not connected                                             | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 [30013] PLC 연결 안됨(PLC not connected) 경고는 차량 제어기와 상위 PLC 간의 통신 연결이 단절된 상태를 의미한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 AMR의 통신 상태 및 네트워크 케이블 연결 여부를 점검하고 설비 HMI를 통해 통신 재연결을 시도해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 48,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30014 | IMU 연결 안됨                                                  | \\[30014\\] IMU not connected                                             | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 [30014] IMU 연결 안됨(IMU not connected) 경고는 관성 측정 장치(IMU)와 제어기 간의 통신 연결이 단절된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 AMR 내부의 IMU 배선 연결 상태를 점검하고 통신 케이블의 물리적 접촉 불량 여부를 확인한 후 시스템을 재부팅해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 49,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30015 | 라이다 데이터 이상                                                 | \\[30015\\] Wrong lidar data                                              | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 [30015] 알람은 라이다(LiDAR) 센서로부터 수신되는 데이터가 비정상적이거나 통신 오류가 발생했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 라이다 센서 렌즈의 오염 상태를 확인하여 이물질을 제거하거나 센서 케이블의 연결 상태를 점검한 후 시스템을 재시작해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 50,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30017 | 모터드라이브 CAN통신 에러                                            | \\[30017\\] Motor drive CAN communication WARN                            | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 [30017] 모터드라이브 CAN통신 에러는 제어기와 모터 드라이브 간의 CAN 통신 연결 상태가 불안정하거나 데이터 전송이 중단되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 제어반 내부의 CAN 통신 케이블 체결 상태를 점검하고 모터 드라이브의 전원을 재기동하여 통신 상태를 초기화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 51,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30018 | MQTT 서버 통신 끊김                                              | \\[30018\\] MQTT server communication disconnected                        | Warn  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T) 시스템에서 발생하는 30018 경고(Warn)는 AMR 제어기와 MQTT 서버 간의 네트워크 통신이 단절되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 네트워크 연결 상태와 MQTT 브로커 서버의 가동 여부를 점검한 후 통신 재연결을 시도해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 52,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30019 | ACS 통신 끊김                                                  | \\[30019\\] ACS communication disconnected                                | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 [30019] ACS 통신 끊김(ACS communication disconnected) 경고는 로봇 제어기와 상위 관제 시스템(ACS) 간의 네트워크 연결이 중단된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 로봇의 네트워크 설정 상태와 무선 AP 접속 여부를 점검하고 설비 HMI를 통해 통신 재연결을 시도해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 53,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30020 | OSSD 발생                                                    | \\[30020\\] OSSD signal                                                   | Info  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T) 시스템에서 30020 알람은 안전 센서의 감지 영역 내 장애물 침입 또는 센서 간 간섭으로 인해 안전 회로인 OSSD(Output Signal Switching Device) 신호가 차단된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 주변의 장애물을 제거하고 안전 상태를 확인한 후 제어 패널의 리셋 버튼을 눌러 안전 회로를 복구해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 54,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30021 | 충전 신호 해제로 인한 릴레이 해제 시도                                     | \\[30021\\] Attempting to turn off relay because the charge signal is off | Info  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T) 시스템에서 충전 신호가 해제됨에 따라, 제어기는 전원 공급 차단을 위해 내부 릴레이의 해제를 시도한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 55,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30030 | 디스크 사용량 70 퍼센트 초과                                          | \\[30030\\] Disk usage exceeds 70 percent                                 | Info  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T) 제어 PC의 내부 저장 장치 디스크 사용량이 전체 용량의 70%를 초과한 상태이다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 56,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30031 | 디스크 사용량 80 퍼센트 초과                                          | \\[30031\\] Disk usage exceeds 80 percent                                 | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T) 제어 PC의 디스크 사용량이 전체 용량의 80%를 초과한 상태이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 제어 PC 내의 불필요한 로그 파일이나 임시 데이터를 삭제하여 디스크 여유 공간을 확보해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 57,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30032 | 디스크 사용량 90 퍼센트 초과                                          | \\[30032\\] Disk usage exceeds 90 percent                                 | Error |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T) 제어 PC의 디스크 사용량이 전체 용량의 90%를 초과하여 시스템 운영에 제한이 발생한 상태이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 제어 PC 내의 불필요한 로그 파일 및 임시 데이터를 삭제하여 디스크 여유 공간을 확보해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 58,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30033 | 메모리 사용량 70 퍼센트 초과                                          | \\[30033\\] Memory usage exceeds 70 percent                               | Info  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T) 제어 시스템의 실시간 메모리 점유율이 전체 용량의 70%를 초과하여 리소스 관리 주의 단계에 진입한 상태를 나타낸다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 59,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30034 | 메모리 사용량 80 퍼센트 초과                                          | \\[30034\\] Memory usage exceeds 80 percent                               | Warn  |",
+        "preprocessed": "BMA 공정 AMR 시스템의 제어 PC에서 발생하는 [30034] 알람은 시스템 메모리 점유율이 전체 용량의 80%를 초과한 상태를 의미한다. 이 경고는 시스템 자원 부족으로 인한 제어 소프트웨어의 지연이나 비정상 종료를 방지하기 위해 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 제어 화면에서 불필요한 프로세스를 종료하거나 시스템 재부팅을 통해 가용 메모리를 확보해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 60,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30035 | 메모리 사용량 90 퍼센트 초과                                          | \\[30035\\] Memory usage exceeds 90 percent                               | Error |",
+        "preprocessed": "BMA 공정 AMR의 제어 시스템에서 발생하는 30035 에러는 내부 메모리 점유율이 전체 용량의 90%를 초과한 상태를 의미한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 제어 PC의 불필요한 로그 파일을 삭제하거나 프로세스를 재시작하여 가용 메모리를 확보해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 61,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30036 | 라이다 오류 발생                                                  | \\[30036\\] LIDAR ERROR Occurred                                          | Error |",
+        "preprocessed": "BMA 공정 AMR의 30036 에러는 장비에 탑재된 라이다(LiDAR) 센서의 하드웨어적 결함이나 통신 장애로 인해 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 라이다 센서의 전원 상태와 케이블 연결을 점검한 후 제어반 내의 관련 차단기를 재투입하여 센서를 재부팅해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 62,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30037 | 라이다 워닝 발생                                                  | \\[30037\\] LIDAR WARN Occurred                                           | Error |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 [30037] LIDAR WARN 에러는 주행 경로상의 장애물 감지 또는 라이다 센서의 오염으로 인해 경고 신호가 발생한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 라이다 센서 표면의 이물질을 제거하거나 주행 경로 내의 간섭물을 확인한 후 설비 HMI를 통해 알람을 해제해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 63,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30038 | 배터리 온도 이상                                                  | \\[30038\\] BMS Battery Over Temperature                                  | Error |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 BMS(Battery Management System)에서 발생하는 30038 에러는 구동 배터리의 온도가 설정된 안전 범위를 초과하여 상승한 상태를 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 64,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30039 | 배터리 전압 이상                                                  | \\[30039\\] BMS Battery Over Voltage                                      | Error |",
+        "preprocessed": "BMA 공정 AMR의 BMS(Battery Management System)에서 발생하는 [30039] 에러는 배터리 전압이 설정된 허용 범위를 초과한 과전압 상태임을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 메인 전원을 차단한 후 배터리 전압 상태를 점검하고, HMI 또는 관제 시스템을 통해 에러를 리셋하여 배터리 보호 회로를 정상화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 65,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30040 | 배터리 통신 에러(충전중)                                             | \\[30040\\] BMS Battery Communication Error (Charging)                    | Error |",
+        "preprocessed": "BMA 공정 AMR의 [30040] BMS Battery Communication Error (Charging) 에러는 충전 프로세스 진행 중 배터리 관리 시스템(BMS)과 제어기 간의 통신이 단절되었을 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 충전 접점 상태와 통신 케이블의 체결 여부를 점검한 후 설비 HMI에서 에러 리셋을 수행해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 66,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| H/W       | 30041 | 배터리 온도 이상(주행중)                                             | \\[30041\\] BMS Battery High Temperature (Driving)                        | Error |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 주행 중 배터리 관리 시스템(BMS)에서 30041 에러가 발생하는 것은 배터리 온도가 설정된 정상 범위를 초과하여 상승한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 로봇을 안전한 구역으로 이동시킨 후 배터리 냉각 상태를 점검하고 HMI를 통해 에러를 해제해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 67,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행모터 드라이버 | 40000 | Over Heat                                                  | \\[40000\\] Over Heat                                                     | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 주행모터 드라이버에서 발생하는 40000 에러는 드라이버 내부 온도가 허용치를 초과한 과열(Over Heat) 상태임을 의미한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 드라이버의 냉각 상태를 확인하고 온도가 정상 범위로 하강한 후 설비를 재가동해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 68,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행모터 드라이버 | 40001 | Over Voltage                                               | \\[40001\\] Over Voltage                                                  | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 주행모터 드라이버에서 발생하는 40001 에러는 입력 전압이 허용 범위를 초과하여 발생하는 Over Voltage 상태를 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 69,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행모터 드라이버 | 40002 | Under Voltage - 응급버튼이 눌린 경우                                | \\[40002\\] Under Voltage                                                 | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 주행모터 드라이버에서 발생하는 '40002(Under Voltage)' 알람은 기구의 비상정지(Emergency Stop) 버튼이 눌려 전압이 차단되었을 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 물리적으로 눌린 비상정지 버튼을 해제하고 주행모터 드라이버의 전압 상태를 확인하여 알람을 초기화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 70,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행모터 드라이버 | 40003 | Short Circuit                                              | \\[40003\\] Short Circuit                                                 | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 주행모터 드라이버에서 발생하는 40003 에러는 시스템 내부 또는 외부 배선에서 단락(Short Circuit)이 감지된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 주행모터 드라이버의 전원을 차단하고 모터 케이블의 절연 상태 및 배선 단락 여부를 점검한 후 시스템을 재시작해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 71,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행모터 드라이버 | 40004 | Emergency Stop - break 해제 상태                               | \\[40004\\] Not Ready                                                     | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T) 주행모터 드라이버의 40004 알람은 비상 정지(Emergency Stop) 스위치가 눌려 브레이크가 해제되지 않은 Not Ready 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 기구부의 비상 정지 버튼을 물리적으로 해제한 후 주행모터 드라이버의 상태를 정상으로 복구해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 72,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행모터 드라이버 | 40005 | Motor/Sensor ERROR                                         | \\[40005\\] Motor/Sensor Setup Fault                                      | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 주행모터 드라이버에서 발생하는 40005 에러는 모터 또는 센서의 설정값(Setup)이 일치하지 않거나 하드웨어 구성 정보에 오류가 발생한 상태를 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 73,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행모터 드라이버 | 40006 | MOSFET failure                                             | \\[40006\\] MOSFET failure                                                | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 주행모터 드라이버에서 발생하는 40006 에러는 내부 MOSFET 소자의 소손 또는 기능적 결함을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 제어반 내부의 주행모터 드라이버 상태를 점검하고 결함이 확인된 드라이버 유닛을 신규 부품으로 교체해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 74,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행모터 드라이버 | 40007 | Default configuration loaded at startup                    | \\[40007\\] Default configuration loaded at startup                       | Warn  |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 주행모터 드라이버에서 발생하는 40007 경고(Warn)는 시스템 시작 시 장치의 설정값이 기본값(Default Configuration)으로 로드되었음을 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 75,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70000 | \\[WIA1000 PLC\\] 작업 시작 시간 초과 알람                             | \\[70000\\] \\[WIA1000 PLC\\] WORK START TIME OVER ALARM                    | Info  |",
+        "preprocessed": "BMA 공정의 WIA1000 PLC 시스템에서 발생하는 70000번 알람은 작업 시작 대기 시간이 설정된 임계치를 초과하였음을 나타내는 정보(Info) 단계의 상태 메시지이다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 76,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70001 | \\[WIA1000 PLC\\] T2 시간 초과 알람                                | \\[70001\\] \\[WIA1000 PLC\\] T2 TIME OVER ALARM                            | Info  |",
+        "preprocessed": "BMA 공정의 WIA1000 PLC 시스템에서 발생하는 70001 에러는 T2 시간 초과(Time Over) 상태를 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 77,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70002 | \\[WIA1000 PLC\\] T5\\&T6 시간 초과 알람                            | \\[70002\\] \\[WIA1000 PLC\\] T5 \\&T6 TIME OVER ALARM                       | Info  |",
+        "preprocessed": "BMA 공정의 1T AMR(WIA1000) PLC에서 발생하는 70002 에러는 T5 및 T6 타이머의 설정 시간이 초과되었음을 나타내는 타임아웃 알람이다. 이 알람은 AMR의 특정 동작 단계가 정의된 시간 내에 완료되지 않았을 때 발생하며, 시스템의 시퀀스 지연 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 PLC 제어반 또는 HMI를 통해 해당 타이머의 동작 상태를 점검하고 알람을 해제하여 공정을 재개해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 78,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70008 | \\[PLC\\] U\\_REQ/L\\_REQ 꺼짐 알람                                | \\[70008\\] \\[PLC\\] U\\_REQ/L\\_REQ OFF ALARM                               | Error |",
+        "preprocessed": "BMA 공정 AMR 시스템의 PLC 에러 코드 70008은 상위 제어 시스템과의 통신 과정에서 상차 요청(U_REQ) 또는 하차 요청(L_REQ) 신호가 비정상적으로 차단되었을 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 설비 HMI의 통신 상태를 점검하고 해당 요청 신호가 정상적으로 활성화되도록 수동 복구 절차를 수행해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 79,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70009 | \\[PLC\\] READY 꺼짐 알람                                        | \\[70009\\] \\[PLC\\] READY OFF ALARM                                       | Error |",
+        "preprocessed": "BMA 공정 AMR의 PLC 70009 에러는 시스템의 READY 신호가 비활성화된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 PLC 제어반의 통신 상태와 전원 공급 여부를 점검한 후 HMI를 통해 READY 신호를 재인가해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 80,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70010 | \\[PLC\\] 작업 시작 시간 초과 알람                                   | \\[70010\\] \\[PLC\\] WORK START TIME OVER ALARM                            | Error |",
+        "preprocessed": "BMA 공정 AMR 시스템의 PLC 에러 코드 70010은 작업 시작 명령이 하달된 후 정해진 제한 시간 내에 실제 작업이 개시되지 않았을 때 발생하는 시간 초과(Time Over) 알람이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 설비 HMI 또는 제어 PC에서 해당 알람을 해제하고 AMR의 통신 상태 및 작업 대기 조건을 확인한 후 작업을 재시작해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 81,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70011 | \\[PLC\\] T2 (물건 받기 전 PLC 내부 동작 불가) 시간 초과 알람            | \\[70011\\] \\[PLC\\] T2 TIME OVER ALARM                                    | Error |",
+        "preprocessed": "BMA 공정 AMR 시스템의 PLC 에러 코드 70011은 물건 수령 전 단계에서 PLC 내부 동작이 정상적으로 수행되지 않아 발생하는 T2 시간 초과(Time Over) 알람이다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 PLC 제어 상태와 통신 연결을 점검한 후 설비 HMI를 통해 알람을 해제하고 동작을 재개시켜야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 82,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70012 | \\[PLC\\] T4 (물건 받는 중 물건 끼임, 센서 중복 감지) 시간 초과 알람       | \\[70012\\] \\[PLC\\] T4 TIME OVER ALARM                                    | Error |",
+        "preprocessed": "BMA 공정 AMR 시스템의 PLC 에러 코드 70012는 물건 이송(받기) 과정 중 물체 끼임 현상이 발생하거나 센서가 중복으로 감지되어 T4 시간 초과(Time Over)가 발생했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR과 설비 사이의 물체 끼임 상태를 해제하고 센서 감지 상태를 정상화한 후 알람을 리셋해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 83,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70013 | \\[PLC\\] EMG 알람(PIO)                                        | \\[70013\\] \\[PLC\\] EMG ALARM(PIO)                                        | Error |",
+        "preprocessed": "BMA 공정 AMR 시스템의 PLC 70013 에러는 설비 간 인터페이스(PIO) 통신 중 비상 정지(EMG) 신호가 감지되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR과 연동 설비의 비상 정지 버튼 상태를 확인하여 해제한 후, 설비 HMI에서 알람 리셋을 수행해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 84,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70016 | \\[WIA300 PLC\\] 롤러 알람                                       | \\[70016\\] \\[WIA300 PLC\\] ROLLER ALARM                                   | Error |",
+        "preprocessed": "BMA 공정의 WIA300 PLC 시스템에서 발생하는 70016 에러는 AMR 상부 롤러 컨베이어의 구동 이상 또는 제어 신호 불일치로 인한 롤러 알람을 의미한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 롤러의 물리적 간섭 여부를 확인하고 PLC 제어 화면에서 해당 알람을 해제해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 85,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70017 | \\[WIA300 PLC\\] 도어 알람                                       | \\[70017\\] \\[WIA300 PLC\\] DOOR ALARM                                     | Error |",
+        "preprocessed": "BMA 공정의 WIA300 PLC 시스템에서 발생하는 70017 에러는 설비 도어(Door)의 개방 또는 인터락 해제로 인한 도어 알람 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 설비의 도어 닫힘 상태를 물리적으로 확인하고 PLC 제어반 또는 HMI 화면에서 알람을 리셋해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 86,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| PLC       | 70018 | \\[WIA300 PLC\\] ACS 명령-센서 불일치 알람                            | \\[70018\\] \\[WIA300 PLC\\] ACS COMMAND-SENSOR MISSMATCH ALARM             | Error |",
+        "preprocessed": "BMA 공정 WIA300 PLC 시스템의 70018 에러는 ACS(AMR Control System)로부터 수신된 구동 명령과 실제 기구부의 센서 감지 상태가 일치하지 않을 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 ACS 제어 화면과 PLC 입출력 상태를 대조하여 센서 오작동 여부를 점검하고, 현재 장비 위치에 맞는 명령값으로 동기화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 87,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80000 | ERROR\\_DRIVER\\_NOT\\_START                                  | \\[80000\\] DRIVER\\_NOT\\_START                                            | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 제어 시스템)에서 발생하는 80000(ERROR_DRIVER_NOT_START) 에러는 주행 드라이버가 정상적으로 시작되지 않았음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 제어반 내부의 드라이버 전원 상태를 점검하고 시스템 재부팅을 통해 주행 드라이버의 통신 상태를 초기화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 88,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80001 | ERROR\\_LOCALIZATION\\_NOT\\_START                            | \\[80001\\] LOCALIZATION\\_NOT\\_START                                      | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 80001 에러는 로봇의 자기 위치 추정(Localization) 프로세스가 정상적으로 시작되지 않은 상태를 의미한다. 이 오류는 시스템 기동 시 맵 데이터 로딩 실패나 센서 초기화 오류로 인해 발생하며, **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 주행 제어 화면에서 위치 추정 알고리즘을 재실행하거나 로봇의 현재 좌표를 수동으로 재설정해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 89,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80002 | ERROR\\_NOT\\_ON\\_PATH                                       | \\[80002\\] NOT\\_ON\\_PATH                                                 | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 80002(ERROR_NOT_ON_PATH) 에러는 로봇의 현재 위치가 설정된 주행 경로를 벗어났을 때 발생한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 수동 조작기를 사용하여 로봇을 지정된 경로 위로 이동시킨 후 에러를 해제해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 90,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80003 | ERROR\\_CONFIDENCE\\_LOW                                     | \\[80003\\] CONFIDENCE\\_LOW                                               | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)에서 발생하는 80003(ERROR_CONFIDENCE_LOW) 에러는 로봇이 현재 위치를 추정하는 신뢰도가 기준치 미만으로 저하되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 로봇의 현재 위치와 맵 데이터상의 위치 일치 여부를 확인한 후 수동 조작을 통해 위치 정합성을 확보해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 91,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80004 | ERROR\\_MAP\\_NOT\\_LOADED                                    | \\[80004\\] MAP\\_NOT\\_LOADED                                              | Error |",
+        "preprocessed": "BMA 공정의 AMR(나비프라 주행 제어 시스템)에서 발생하는 80004(ERROR_MAP_NOT_LOADED) 에러는 주행에 필요한 맵 데이터가 제어기에 정상적으로 로드되지 않은 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 제어 시스템의 맵 설정 상태를 확인하고 해당 공정에 적합한 맵 파일을 다시 로드하여 주행 환경을 초기화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 92,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80005 | ERROR\\_PAUSED\\_BY\\_OBSTACLE                                | \\[80005\\] PAUSED\\_BY\\_OBSTACLE                                          | Info  |",
+        "preprocessed": "BMA 공정 AMR(나비프라 제어 시스템)의 80005 에러는 주행 경로상에 장애물이 감지되어 기동이 일시 정지된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 주변의 장애물을 제거한 후 제어 화면에서 정지 상태를 해제하고 주행을 재개시켜야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 93,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80006 | ERROR\\_MOTOR\\_NOTCONNECTED                                 | \\[80006\\] MOTOR\\_NOTCONNECTED                                           | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)에서 발생하는 80006 에러(ERROR_MOTOR_NOTCONNECTED)는 주행 제어기와 구동 모터 사이의 물리적 연결이 단절되었거나 통신이 불가능한 상태임을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 AMR 하부의 모터 전원 케이블 및 통신 커넥터의 체결 상태를 점검하고, 제어반 내 모터 드라이버의 전원 공급 상태를 확인하여 장비를 재가동해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 94,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80007 | ERROR\\_FRONT\\_LIDAR\\_SIGNAL\\_TIMEOUT                       | \\[80007\\] FRONT\\_LIDAR\\_SIGNAL\\_TIMEOUT                                 | Error |",
+        "preprocessed": "BMA 공정의 AMR(나비프라 주행 시스템)에서 발생하는 80007 에러는 전방 라이다(Front LiDAR)의 통신 신호가 지정된 시간 내에 수신되지 않는 타임아웃 상태를 의미한다. 이 오류는 전방 라이다 센서와 제어기 간의 물리적 연결 불량이나 통신 패킷 손실로 인해 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 라이다 센서의 전원 상태와 통신 케이블 연결을 점검한 후 AMR 제어 패널에서 알람 해제(Reset)를 수행해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 95,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80008 | ERROR\\_FRONT\\_LIDAR\\_CLEAN                                 | \\[80008\\] FRONT\\_LIDAR\\_CLEAN                                           | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 전방 라이다(Front LiDAR) 센서 표면에 이물질이 부착되거나 오염이 발생하여 정상적인 스캔 데이터 확보가 불가능할 때 80008(ERROR_FRONT_LIDAR_CLEAN) 에러가 발생한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 작업자는 전방 라이다 센서의 윈도우 표면을 세정 도구로 닦아 이물질을 제거한 후 에러를 해제해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 96,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80009 | ERROR\\_REAR\\_LIDAR\\_SIGNAL\\_TIMEOUT                        | \\[80009\\] REAR\\_LIDAR\\_SIGNAL\\_TIMEOUT                                  | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 후방 라이다(Rear LiDAR) 통신 신호가 지정된 시간 내에 수신되지 않을 때 80009(ERROR_REAR_LIDAR_SIGNAL_TIMEOUT) 에러가 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 후방 라이다의 케이블 연결 상태와 전원 공급 장치를 점검한 후 시스템을 재부팅해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 97,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80010 | ERROR\\_REAR\\_LIDAR\\_CLEAN                                  | \\[80010\\] REAR\\_LIDAR\\_CLEAN                                            | Error |",
+        "preprocessed": "BMA 공정 AMR(0.3T/1T)의 주행 제어 시스템(나비프라)에서 발생하는 80010 에러는 후방 라이다(Rear LiDAR) 센서의 오염으로 인해 정상적인 스캔 데이터 확보가 불가능한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 작업자는 AMR 후방에 위치한 라이다 센서 표면의 이물질을 제거하고 클리닝 작업을 수행하여 센서의 감지 성능을 정상화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 98,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80011 | LOCALIZATION\\_LARGE\\_CORRECTION                            | \\[80011\\] LOCALIZATION\\_LARGE\\_CORRECTION                               | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 80011(LOCALIZATION_LARGE_CORRECTION) 에러는 로봇이 추정한 현재 위치와 실제 지도 데이터상의 위치 간에 허용 범위를 초과하는 큰 오차가 발생했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 로봇의 현재 위치를 수동으로 보정하거나 주변 장애물을 제거하여 로봇이 정확한 위치 데이터를 재확보할 수 있도록 조치해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 99,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80012 | ERROR\\_NAVICORE\\_NOTCONNECTED                              | \\[80012\\] NAVICORE\\_NOTCONNECTED                                        | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 제어 시스템)의 80012 에러는 상위 제어 시스템과 NaviCore 간의 통신 연결이 해제되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 네트워크 연결 상태를 점검하고 AMR 제어반 내 통신 모듈의 정상 작동 여부를 확인한 후 시스템을 재접속해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 100,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80013 | ERROR\\_PAUSE\\_BY\\_OBSTACLE\\_TIMEOUT                        | \\[80013\\] PAUSE\\_BY\\_OBSTACLE\\_TIMEOUT                                  | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 제어 시스템)의 80013 에러는 주행 경로상에 장애물이 감지되어 일시 정지 상태가 지속되었으나, 설정된 제한 시간(Timeout) 내에 장애물이 제거되지 않아 주행이 완전히 중단된 상태를 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 101,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80014 | ERROR\\_ENCODER\\_NOT\\_UPDATE                                | \\[80014\\] ENCODER\\_NOT\\_UPDATE                                          | Info  |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)에서 발생하는 80014(ERROR_ENCODER_NOT_UPDATE) 에러는 주행 모터의 엔코더 데이터가 실시간으로 업데이트되지 않아 발생하는 통신 또는 피드백 오류를 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 102,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80015 | ERROR\\_DOCKING\\_HEADING\\_CTR\\_EXCEEDED                     | \\[80015\\] DOCKING\\_HEADING\\_CTR\\_EXCEEDED                               | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 제어 시스템)에서 발생하는 80015(ERROR_DOCKING_HEADING_CTR_EXCEEDED) 에러는 로봇이 도킹 위치에 진입할 때 기체의 헤딩(Heading) 각도 편차가 제어 허용 범위를 초과했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 현재 자세를 수동으로 교정하여 도킹 시작 지점으로 재배치하거나, 제어 화면에서 해당 에러를 해제한 후 도킹 명령을 재전송해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 103,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80016 | ERROR\\_FRONT\\_CAMERA\\_TIMEOUT                              | \\[80016\\] FRONT\\_CAMERA\\_TIMEOUT                                        | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 전방 카메라 통신 시간 초과(ERROR_FRONT_CAMERA_TIMEOUT)는 전방 감시 카메라와 제어기 간의 데이터 송수신이 지정된 시간 내에 완료되지 않을 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 전방 카메라 연결 케이블 상태를 점검하고 제어 시스템의 통신 상태를 재설정해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 104,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80017 | ERROR\\_REAR\\_CAMERA\\_TIMEOUT                               | \\[80017\\] REAR\\_CAMERA\\_TIMEOUT                                         | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 80017(ERROR_REAR_CAMERA_TIMEOUT) 에러는 후방 카메라의 데이터 수신 시간이 초과되어 통신이 중단된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 후방 카메라의 케이블 연결 상태와 전원 공급 장치를 점검한 후 제어 시스템에서 알람을 해제해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 105,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80018 | ERROR\\_DOCK\\_NOT\\_FIND                                     | \\[80018\\] DOCK\\_NOT\\_FIND                                               | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 80018(ERROR_DOCK_NOT_FIND) 에러는 로봇이 도킹 프로세스 수행 중 지정된 도킹 스테이션 또는 마커를 인식하지 못했을 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 현재 위치와 도킹 타겟 사이의 가시선(Line of Sight)을 방해하는 장애물이 있는지 확인하고, 수동 조작 모드를 통해 로봇을 도킹 인식 가능 범위 내로 이동시킨 후 재시도해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 106,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80019 | ERROR\\_LICENSE\\_IS\\_NOT\\_CHECKED                           | \\[80019\\] LICENSE\\_IS\\_NOT\\_CHECKED                                     | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)의 80019 에러는 주행 제어 소프트웨어의 라이선스 인증이 완료되지 않았거나 유효하지 않은 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 라이선스 키의 유효 기간 및 동글(Dongle) 키의 연결 상태를 점검하고 시스템 재인증 절차를 수행해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 107,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80020 | ERROR\\_PATH\\_OUT                                           | \\[80020\\] PATH\\_OUT                                                     | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)에서 발생하는 80020(ERROR_PATH_OUT) 에러는 로봇이 설정된 주행 경로를 이탈하여 정상적인 자율 주행이 불가능한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 조이스틱이나 수동 제어 인터페이스를 사용하여 로봇을 지정된 경로 내로 복귀시킨 후 에러를 해제해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 108,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80021 | ERROR\\_UNDEFINED                                           | \\[80021\\] UNDEFINED                                                     | Error |",
+        "preprocessed": "BMA 공정 AMR의 나비프라(Navifra) 주행 제어 시스템에서 발생하는 80021(ERROR_UNDEFINED) 에러는 시스템 내부에 정의되지 않은 예외 상황이나 미분류 오류가 감지되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 주행 제어기 상태를 점검하고 로그 분석을 통해 발생 원인을 파악한 후 시스템을 재부팅하거나 에러를 초기화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 109,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80022 | ERROR\\_PATH\\_NOT\\_CREATED                                  | \\[80022\\] PATH\\_NOT\\_CREATED                                            | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 제어 시스템)의 80022(ERROR_PATH_NOT_CREATED) 에러는 로봇이 현재 위치에서 목적지까지 주행하기 위한 경로 생성에 실패했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 현재 위치가 지도상의 주행 가능 영역(Soft-wall 내부)에 있는지 확인하고, 장애물 제거 또는 로봇 위치 보정 후 경로 재생성을 시도해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 110,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80023 | ERROR\\_DOCKING\\_POS\\_EXCEED                                | \\[80023\\] DOCKING\\_POS\\_EXCEED                                          | Error |",
+        "preprocessed": "BMA 공정의 AMR(나비프라 주행 시스템)에서 발생하는 80023(ERROR_DOCKING_POS_EXCEED) 에러는 로봇이 도킹 목표 지점의 허용 오차 범위를 초과하여 정지했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR을 수동 모드로 전환하여 도킹 위치를 재조정하거나 해당 에러를 해제한 후 재가동해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 111,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80024 | ERROR\\_DOCKING\\_TIMEOUT                                    | \\[80024\\] DOCKING\\_TIMEOUT                                              | Error |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)에서 발생하는 80024(ERROR_DOCKING_TIMEOUT) 에러는 로봇이 정해진 제한 시간 내에 도킹 스테이션 진입 및 정렬을 완료하지 못했을 때 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 현재 위치와 도킹 스테이션의 상태를 확인한 후 설비 HMI를 통해 에러를 해제하고 로봇을 재가동해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 112,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80025 | ERROR\\_PAUSE\\_BY\\_LIDAR\\_OBSTACLE                          | \\[80025\\] PAUSE\\_BY\\_LIDAR\\_OBSTACLE                                    | Info  |",
+        "preprocessed": "BMA 공정의 AMR(나비프라 주행 시스템)에서 발생하는 80025 에러(ERROR_PAUSE_BY_LIDAR_OBSTACLE)는 기기에 장착된 라이다(LiDAR) 센서가 주행 경로상의 장애물을 감지하여 일시 정지 상태가 되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 주행 경로 내의 장애물을 제거한 후 제어 시스템을 통해 주행 재개 명령을 입력해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 113,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80026 | ERROR\\_PAUSE\\_BY\\_CAMERA\\_OBSTACLE                         | \\[80026\\] PAUSE\\_BY\\_CAMERA\\_OBSTACLE                                   | Info  |",
+        "preprocessed": "BMA 공정의 AMR(나비프라 주행 시스템)에서 발생하는 80026 에러는 기구부에 장착된 카메라 센서가 주행 경로상의 장애물을 감지하여 일시 정지 상태가 되었음을 의미한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 카메라 시야각 내의 장애물을 제거한 후 주행 상태를 재확인해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 114,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80027 | ERROR\\_PAUSE\\_BY\\_ANOTHER\\_ROBOT\\_OBSTACLE                 | \\[80027\\] PAUSE\\_BY\\_ANOTHER\\_ROBOT\\_OBSTACLE                           | Info  |",
+        "preprocessed": "BMA 공정의 AMR(나비프라 주행 시스템)에서 발생하는 80027 에러는 주행 경로상에 위치한 다른 로봇을 장애물로 인식하여 일시 정지한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 선행 로봇의 이동 여부를 확인한 후 AMR의 주행 상태를 재개시켜야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 115,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80028 | ERROR\\_MOTOR\\_DRIVER\\_RESPONSE\\_TIMEOUT                    | \\[80028\\] MOTOR\\_DRIVER\\_RESPONSE\\_TIMEOUT                              | Info  |",
+        "preprocessed": "BMA 공정 AMR(나비프라 주행 시스템)에서 발생하는 80028 에러는 모터 드라이버의 응답 시간이 제한치를 초과하여 통신 지연이 발생한 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 제어반 내 모터 드라이버의 통신 케이블 연결 상태를 점검하고 시스템 재부팅을 통해 통신 상태를 초기화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 116,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| 주행 (나비프라) | 80029 | ERROR\\_PAUSED\\_BY\\_DOCK\\_OUT\\_T\\_ZONE\\_OBSTACLE            | \\[80029\\] PAUSED\\_BY\\_DOCK\\_OUT\\_T\\_ZONE\\_OBSTACLE                      | Info  |",
+        "preprocessed": "BMA 공정의 AMR(나비프라 주행 시스템)에서 발생하는 80029 에러는 도킹 해제(Dock-out) 과정 중 T-Zone 내에 장애물이 감지되어 주행이 일시 정지된 상태를 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 주변 및 T-Zone 경로상의 장애물을 제거한 후 제어 시스템을 통해 주행 재개 명령을 입력해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 117,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 3     | POWER\\_OFF                                                 | POWER\\_OFF                                                              | Error |",
+        "preprocessed": "BMA 공정 AMR 시스템의 ACS(Autonomous Control System)에서 발생하는 POWER_OFF 에러는 로봇의 메인 전원이 차단되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 본체의 전원 상태를 점검하고 물리적 스위치를 통해 전원을 재인가하여 시스템을 정상화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 118,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 6     | ROBOT\\_MANUAL\\_OPERATION\\_STATUS                           | ROBOT\\_MANUAL\\_OPERATION\\_STATUS                                        | Error |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)에서 발생하는 ROBOT_MANUAL_OPERATION_STATUS 에러는 로봇의 제어 모드가 자동(Auto)이 아닌 수동(Manual) 상태로 전환되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR 본체의 조작 패널 또는 HMI를 확인하여 제어 스위치를 자동 모드로 전환하고 에러 상태를 해제해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 119,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 11    | ACS\\_ERROR\\_WHILE\\_NAVIGATING\\_THE\\_ROUTE                  | ACS\\_ERROR\\_WHILE\\_NAVIGATING\\_THE\\_ROUTE                               | Warn  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)이 주행 경로를 탐색하거나 이동하는 과정에서 ACS(Autonomous Control System) 제어 오류가 발생하면 ACS_ERROR_WHILE_NAVIGATING_THE_ROUTE 경고가 발생한다. 해당 경고는 로봇의 경로 추종 기능에 일시적 결함이 생겼음을 의미하며, **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 ACS 관제 시스템에서 해당 로봇의 상태를 확인하고 경로 재설정 또는 수동 주행을 통해 로봇을 정상 경로로 복귀시켜야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 120,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 12    | ERROR\\_OCCURRED\\_WHILE\\_SENDING\\_JOB\\_COMMAND              | ERROR\\_OCCURRED\\_WHILE\\_SENDING\\_JOB\\_COMMAND                           | Warn  |",
+        "preprocessed": "BMA 공정의 ACS(Autonomous Control System)에서 AMR로 작업 명령(Job Command)을 전송하는 과정 중 통신 오류가 발생하면 ERROR_OCCURRED_WHILE_SENDING_JOB_COMMAND 경고가 생성된다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 ACS 관제 화면에서 해당 AMR의 통신 상태를 점검하고 명령 재전송 또는 작업 초기화를 수행해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 121,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 30    | WORK\\_DELAY                                                | WORK\\_DELAY                                                             | Warn  |",
+        "preprocessed": "BMA 공정의 AMR 시스템에서 발생하는 WORK_DELAY(30) 경고는 ACS(AMR Control System)가 할당된 작업의 처리 지연을 감지했음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 ACS 관제 화면에서 해당 AMR의 상태와 경로상의 장애 요인을 확인한 후 작업을 재개하거나 강제 종료해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 122,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 45    | MAP\\_VERSION\\_IS\\_DIFFERENT                                | MAP\\_VERSION\\_IS\\_DIFFERENT                                             | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 ACS(Agile Control System)에서 발생하는 MAP_VERSION_IS_DIFFERENT 경고는 로봇에 저장된 맵 버전과 관제 서버의 맵 버전이 일치하지 않을 때 발생한다. 시스템 자동 복구가 실패하여 수동 조작이 필요한 경우, 운영자는 ACS 관제 화면에서 현재 맵 버전을 확인한 후 로봇에 최신 맵 데이터를 재배포하여 버전을 동기화해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 123,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 46    | COMMUNICATION\\_ERROR                                       | COMMUNICATION\\_ERROR                                                    | Warn  |",
+        "preprocessed": "BMA 공정의 AMR 시스템에서 발생하는 COMMUNICATION_ERROR(코드 46)는 ACS(Autonomous Control System)와 로봇 간의 통신 연결이 단절되었음을 의미한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 AMR의 네트워크 연결 상태와 ACS 서버의 통신 포트를 점검한 후 통신 재연결 작업을 수행해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 124,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 51    | INOPERATIVE\\_AFTER\\_COMPLETION\\_OF\\_SENDING\\_TASK\\_COMMAND | INOPERATIVE\\_AFTER\\_COMPLETION\\_OF\\_SENDING\\_TASK\\_COMMAND              | Warn  |",
+        "preprocessed": "BMA 공정 AMR의 ACS(Autonomous Control System)에서 발생하는 51번 알람(INOPERATIVE_AFTER_COMPLETION_OF_SENDING_TASK_COMMAND)은 상위 제어 시스템이 주행 또는 작업 명령 전송을 완료했음에도 불구하고 로봇이 구동되지 않는 상태를 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 125,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 100   | HARD\\_DISK\\_CAPACITY\\_EXCEEDED                             | HARD\\_DISK\\_CAPACITY\\_EXCEEDED                                          | Error |",
+        "preprocessed": "BMA 공정 ACS(Autonomous Control System) 서버의 하드디스크 용량이 가용 임계치를 초과하여 HARD_DISK_CAPACITY_EXCEEDED 에러가 발생한다. **시스템 자동 복구가 실패하여 수동 조작이 필요한 경우,** 운영자는 ACS 서버 내 불필요한 로그 파일 및 임시 데이터를 삭제하여 디스크 저장 공간을 확보해야 한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 126,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 700   | AMR\\_COLLISION\\_RISK\\_WARNING                              | AMR\\_COLLISION\\_RISK\\_WARNING                                           | Warn  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T) 시스템에서 발생하는 700번 알람(AMR_COLLISION_RISK_WARNING)은 주행 경로상에 장애물이 감지되어 충돌 위험이 있음을 나타내는 경고 상태를 의미한다.",
+        "source": "acs_alarm.md"
+    },
+    {
+        "id": 127,
+        "original": "| Part      | No.   | Contents (Kor)                                             | Contents (Eng)                                                          | LEVEL |\n| :-------: | :---: | :--------------------------------------------------------: | :---------------------------------------------------------------------: | :---: |\n| ACS 감지    | 701   | WATING\\_FOR\\_MISSION\\_START\\_COLLISION\\_AVOIDANCE\\_DECTION | WATING\\_FOR\\_MISSION\\_START\\_COLLISION\\_AVOIDANCE\\_DECTION              | Info  |",
+        "preprocessed": "BMA 공정의 AMR(0.3T/1T)이 미션 시작 대기 상태에서 ACS(AMR Control System)를 통해 전방 장애물 또는 충돌 위험을 감지한 경우, '701(WATING_FOR_MISSION_START_COLLISION_AVOIDANCE_DECTION)' 정보 알람이 발생하며 주행 시작이 일시적으로 제한된다.",
         "source": "acs_alarm.md"
     }
 ]
